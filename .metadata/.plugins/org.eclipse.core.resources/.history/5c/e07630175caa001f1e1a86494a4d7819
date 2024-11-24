@@ -1,0 +1,17 @@
+package com.java.concepts;
+
+public class Loops {
+
+	public static void loopConcepts() {
+		int var =0;
+		for(;;var+=100) {
+			System.out.println(var);
+		}
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		loopConcepts();
+	}
+
+}

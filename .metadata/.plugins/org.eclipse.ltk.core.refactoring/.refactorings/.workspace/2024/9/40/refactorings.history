@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;SpringBoot-Security-JWT-1&apos; to &apos;SpringBoot-Security-OAuth2&apos;" description="Rename resource &apos;SpringBoot-Security-JWT-1&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/SpringBoot-Security-JWT-1" name="SpringBoot-Security-OAuth2" stamp="1727595732046" updateReferences="true"/>
+</session>

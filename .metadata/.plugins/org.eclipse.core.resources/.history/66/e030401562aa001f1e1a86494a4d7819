@@ -1,0 +1,22 @@
+package com.java.concepts;
+
+public class Loops {
+
+	public static void loopConcepts() {
+		int var =1;
+		for(;;) {
+			if(var>10) break;
+			System.out.println(var);
+			var++;
+		}
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		loopConcepts();
+		StringBuilder sb = new StringBuilder("a");
+		StringBuilder sb2 = new StringBuilder("a");
+		System.out.println(sb==sb2);
+	}
+
+}

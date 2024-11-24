@@ -1,0 +1,11 @@
+package com.java.interview.reduce;
+
+public class Check {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ReduceExample re = new ReduceExample();
+		System.out.println(obj.num);
+	}
+
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete element from project &apos;Telusko_WebApp_DB_Rest&apos;&#x0D;&#x0A;- Original project: &apos;Telusko_WebApp_DB_Rest&apos;&#x0D;&#x0A;- Original element: &apos;generated-request.http&apos;" description="Delete element" element1="src/main/java/com/telusko/demo/generated-request.http" elements="0" flags="589830" id="org.eclipse.jdt.ui.delete" resources="1" stamp="1718473999205" subPackages="false" version="1.0"/>
+</session>

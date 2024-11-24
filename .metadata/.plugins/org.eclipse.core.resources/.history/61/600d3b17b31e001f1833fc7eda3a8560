@@ -1,0 +1,113 @@
+package com.java.learnings.java8;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+
+public class Java8Features {
+
+	public static void main(String[] args) {
+		
+		streamApi();
+	}
+	
+	public static void streamApi() {
+		 List<Product> productsList = new ArrayList<Product>();  
+	        //Adding Products  
+	        productsList.add(new Product(1,"HP Laptop",25000f));  
+	        productsList.add(new Product(2,"Dell Laptop",30000f));  
+	        productsList.add(new Product(3,"Lenevo Laptop",28000f));  
+	        productsList.add(new Product(4,"Sony Laptop",28000f));  
+	        productsList.add(new Product(5,"Apple Laptop",90000f)); 
+	        productsList.add(new Product(5,"Apple Laptop",90000f));  
+	        
+	        productsList.stream().filter(p->p.price > 30000).map(p->p.price).forEach(System.out::println); 
+	        
+	        Stream.iterate(1, element->element+3)  
+	        .filter(element->element%5==0)  
+	        .limit(5)  
+	        .forEach(System.out::println);  
+	        
+	        Float totalPrice1 = productsList.stream().map(product -> product.price).reduce(0.0f, (sum,price) -> sum + price);
+	        System.out.println(totalPrice1);
+	        
+	        //Using method reference
+	        Float totalPrice2 = productsList.stream().map(product -> product.price).reduce(0.0f, Float::sum);
+	        System.out.println(totalPrice2);
+	        
+	        System.out.println(productsList.stream().collect(Collectors.summarizingDouble(p -> p.price)));
+	        
+	        //find max
+	        System.out.println(productsList.stream().max((product1,product2) -> product1.price > product2.price?1:-1).get());
+	}
+	
+    static void addList(List<Integer> list){  
+        // Return sum of list values  
+        int result = list.stream()  
+                   .mapToInt(Integer::intValue)  
+                   .sum();  
+        System.out.println("Sum of list values: "+result);  
+    }  
+
+	public static void lamdaFunction() {
+		
+		Addable addable = (a,b)->{
+			return a+b;
+	   }; 
+		System.out.println("Implement of functional interface using Lamda Expression \n"+addable.add("karthick","kiruba")+"\n");
+		
+		//ForEach
+		System.out.println("ForEach:");
+        List<String> list= Arrays.asList("karthick","kiruba","ajees","nethaji");
+        list.forEach((val)->System.out.println(val));
+        
+        Collections.sort(list,(val1,val2) ->{
+        	return val1.compareTo(val2);
+        });
+        System.out.println(list);
+        
+        Consumer<List<Integer>> total= Java8Features::addList;
+		total.accept(Arrays.asList(1,2,3,4,5));
+	}
+	
+	public static void java8NewFeatures() {
+		//Finding occurrence of each element
+		List<Integer> numbers = Arrays.asList(2,5,1,6,7,8,1,23,4,9,0,1,2,3,6,1,2,7,2,3,5);
+		Map<Integer,Integer> frequencyMap = numbers.stream().collect(Collectors.toMap(num -> num, num ->Collections.frequency(numbers, num),(extVal,newVal) -> extVal));
+		System.out.println("Frequency Map = "+frequencyMap);
+		
+		//Collections.disjoint compare 2 collections having common element
+		List<Integer> list1 = new ArrayList<>();
+		Collections.addAll(list1, 1,2,3,4,5);
+		
+		List<Integer> list2 = new ArrayList<>();
+		Collections.addAll(list2, 8,14,25);
+		
+		System.out.println("List1 and List2 doesn't have any common elements : "+Collections.disjoint(list1, list2));
+		
+		
+		//Collections.singleTon To create a immutable single collection instance
+		Set<String> singleObject = Collections.singleton("Karthick");
+		
+		try {
+			singleObject.add("kannan");
+		}catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		
+		//Collections.rotate
+		List<Integer> numberList = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
+		
+		Collections.rotate(numberList, 3);
+		System.out.println(numberList);
+	}
+
+}

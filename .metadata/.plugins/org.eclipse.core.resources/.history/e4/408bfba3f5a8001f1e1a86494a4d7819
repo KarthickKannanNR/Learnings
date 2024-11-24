@@ -1,0 +1,35 @@
+package com.java.Multithreading;
+
+import java.util.concurrent.locks.ReentrantLock;
+
+public class ThreadCheck extends Thread{
+
+	public ThreadCheck(String threadName){
+		super(threadName);
+	}
+	
+	Integer lock = new Integer(1);
+	int count = 0;
+	 ReentrantLock reLock = new ReentrantLock();
+	
+	@Override
+	public void run() {
+		synchronized (lock) {
+			count++;
+		}
+		//reLock.lock();
+		//count++;
+		System.out.println(count);
+		System.out.println(Thread.currentThread().getName());
+		//reLock.unlock();
+	}
+	
+	public static void main(String[] args) {
+		ThreadCheck t = new ThreadCheck("dummmy");
+		Thread thread;
+		for(int i =0;i<1000;i++) {
+			thread = new Thread(t);
+			thread.start();
+		}
+	}
+}

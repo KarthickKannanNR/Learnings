@@ -1,0 +1,13 @@
+INDEX VERSION 1.134
+E:\SPRING_BOOT\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1007593373.index
+\Telusko_WebApp_DB\src\main\java
+E:\SPRING_BOOT\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3834619336.index
+\Telusko_WebApp_1\src\main\java
+E:\SPRING_BOOT\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2404956332.index
+\Telusko_WebApp_2\src\main\java
+E:\SPRING_BOOT\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3703759656.index
+\Telusko_WebApp_1\src\main\java
+E:\SPRING_BOOT\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3085298437.index
+\Telusko_WebApp_2\src\main\java
+E:\SPRING_BOOT\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2989916089.index
+\SpringBoot-Data-Jpa\src\main\java

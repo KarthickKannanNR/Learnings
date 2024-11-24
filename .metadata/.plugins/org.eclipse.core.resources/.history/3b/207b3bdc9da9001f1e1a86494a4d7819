@@ -1,0 +1,30 @@
+package com.java.concepts;
+
+public enum EnumPractice {
+
+	SUMMER("hot") {
+		@Override
+		public void sound() {
+			System.out.println(SUMMER.values());
+			
+		}
+	},
+	
+	COW {
+		@Override
+        public void sound() {
+            System.out.println("Moo");
+        }
+    };
+    private String description;
+
+	EnumPractice(String description) {
+        this.description = description;
+
+	}
+	
+	EnumPractice(){};
+
+	public abstract void sound();
+	
+}

@@ -1,0 +1,14 @@
+package com.java.Multithreading;
+
+public class ThreadCheck extends Thread{
+
+	@Override
+	public void start() {
+		
+	}
+	
+	public static void main(String[] args) {
+		ThreadCheck t = new ThreadCheck();
+		t.run();
+	}
+}

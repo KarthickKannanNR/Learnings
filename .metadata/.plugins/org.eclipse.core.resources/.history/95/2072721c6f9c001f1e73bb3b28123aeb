@@ -1,0 +1,14 @@
+package com.java8.functionalInterface;
+
+@FunctionalInterface
+public interface Vehicle {
+
+	int i=100;
+
+	void start();
+	
+	public static void print() {
+		
+	}
+
+}

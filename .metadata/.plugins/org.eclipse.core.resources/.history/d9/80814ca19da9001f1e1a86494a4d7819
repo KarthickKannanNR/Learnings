@@ -1,0 +1,28 @@
+package com.java.concepts;
+
+public enum EnumPractice {
+
+	SUMMER("hot") {
+		@Override
+		public void sound() {
+			// TODO Auto-generated method stub
+			
+		}
+	},
+	
+	COW {
+		@Override
+        public void sound() {
+            System.out.println("Moo");
+        }
+    };
+    private String description;
+
+	EnumPractice(String description) {
+        this.description = description;
+
+	}
+
+	public abstract void sound();
+	
+}
