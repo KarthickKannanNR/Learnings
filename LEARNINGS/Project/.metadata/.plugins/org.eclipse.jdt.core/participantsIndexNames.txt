@@ -1,7 +1,0 @@
-INDEX VERSION 1.134
-E:\LEARNINGS\Project\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3937339339.index
-\medicalshopapp-web\src\main\java
-E:\LEARNINGS\Project\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1007593373.index
-\Telusko_WebApp_DB\src\main\java
-E:\LEARNINGS\Project\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3085298437.index
-\Telusko_WebApp_2\src\main\java
