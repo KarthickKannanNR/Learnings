@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Hello Thymeleaf</title>
+</head>
+<body>
+	<span  th:each="user : ${users}">
+	<span>
+		Hello, <span th:text="${user.userName}">World</span>!
+	</span>
+	<span>
+		Email, <span th:text="${user.email}">World</span>!
+	</span>
+	<span>
+		Role, <span th:text="${user.role}">World</span>!
+	</span>
+	<span>
+		Age, <span th:text="${user.age}">World</span>!
+	</span>
+	</br>
+	</span>
+
+
+</body>
+</html>

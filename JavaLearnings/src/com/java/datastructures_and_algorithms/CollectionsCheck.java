@@ -60,7 +60,6 @@ public class CollectionsCheck {
 		map.put(10, "a");
 		map.put(3, "a");
 		map.put(120, "a");
-
 		System.out.println(map);
 	}
 	
@@ -94,7 +93,8 @@ public class CollectionsCheck {
 
 	}
 	
+
 	public static void main(String[] args) {
-		linkedList();
+		hashMap();
 	}
 }

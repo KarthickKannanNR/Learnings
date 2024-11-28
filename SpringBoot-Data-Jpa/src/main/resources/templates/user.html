@@ -2,23 +2,34 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Hello Thymeleaf</title>
+<style type="text/css">
+#userDiv {
+	box-shadow: 0px 0px 5px yellowgreen;
+	border-radius: 2px;
+	margin: 5px;
+	margin-bottom:10px;
+	padding: 10px;
+}
+</style>
 </head>
 <body>
-	<tr  th:each="user : ${users}">
-	<h1>
+	<span id="userDiv" th:each="user : ${users}">
+	<span>
 		Hello, <span th:text="${user.userName}">World</span>!
-	</h1>
-	<h1>
-		Hello, <span th:text="${user.email}">World</span>!
-	</h1>
-	<h1>
-		Hello, <span th:text="${user.role}">World</span>!
-	</h1>
-	<h1>
-		Hello, <span th:text="${user.age}">World</span>!
-	</h1>
+	</span>
+	<span>
+		Email, <span th:text="${user.email}">World</span>!
+	</span>
+	<span>
+		Role, <span th:text="${user.role}">World</span>!
+	</span>
+	<span>
+		Age, <span th:if="${user.age<10}">${user.age}</span>!
+		<div th:unless="${user.age>18}">MInor</div>
+		
+	</span>
 	</br>
-	</tr>
+	</span>
 
 
 </body>

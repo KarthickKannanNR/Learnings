@@ -1771,3 +1771,103 @@ java.util.concurrent.TimeoutException
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:668)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:605)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1481)
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-11-28 15:36:13.186
+!MESSAGE Classpath changed for project: SpringBoot-Data-Jpa
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-11-28 15:36:14.095
+!MESSAGE Classpath changed for project: SpringBoot-Data-Jpa
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-11-28 15:38:00.626
+!MESSAGE Classpath changed for project: SpringBoot-Data-Jpa
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-11-28 15:39:11.954
+!MESSAGE Classpath changed for project: SpringBoot-Data-Jpa
+
+!ENTRY org.eclipse.lsp4e 2 0 2024-11-28 16:46:45.173
+!MESSAGE Could not detect hyperlinks due to timeout after 800 milliseconds
+!STACK 0
+java.util.concurrent.TimeoutException
+	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
+	at org.eclipse.lsp4e.operations.declaration.OpenDeclarationHyperlinkDetector.detectHyperlinks(OpenDeclarationHyperlinkDetector.java:72)
+	at org.eclipse.ui.texteditor.HyperlinkDetectorRegistry$HyperlinkDetectorDelegate.detectHyperlinks(HyperlinkDetectorRegistry.java:81)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.findHyperlinks(HyperlinkManager.java:289)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.findHyperlinks(HyperlinkManager.java:262)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.mouseMove(HyperlinkManager.java:457)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:229)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:91)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4326)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1174)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4124)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3712)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:639)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:546)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:143)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:109)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:439)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:271)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:668)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:605)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1481)
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-11-28 16:46:52.902
+!MESSAGE Classpath changed for project: SpringBoot-Data-Jpa
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-11-28 16:48:23.346
+!MESSAGE Classpath changed for project: SpringBoot-Data-Jpa
+
+!ENTRY org.eclipse.lsp4e 4 0 2024-11-28 16:48:24.382
+!MESSAGE Marker id 29026 not found.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException(/SpringBoot-Data-Jpa/pom.xml)[376]: java.lang.IllegalStateException
+	at org.eclipse.core.internal.resources.Marker.checkInfo(Marker.java:63)
+	at org.eclipse.core.internal.resources.Marker.getAttributes(Marker.java:163)
+	at org.eclipse.lsp4e.operations.diagnostics.LSPDiagnosticsToMarkers.updateMarker(LSPDiagnosticsToMarkers.java:210)
+	at org.eclipse.lsp4e.operations.diagnostics.LSPDiagnosticsToMarkers$1.runInWorkspace(LSPDiagnosticsToMarkers.java:184)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:43)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.core.resources 4 376 2024-11-28 16:48:24.395
+!MESSAGE Marker id 29026 not found.
+!STACK 0
+java.lang.IllegalStateException
+	at org.eclipse.core.internal.resources.Marker.checkInfo(Marker.java:63)
+	at org.eclipse.core.internal.resources.Marker.getAttributes(Marker.java:163)
+	at org.eclipse.lsp4e.operations.diagnostics.LSPDiagnosticsToMarkers.updateMarker(LSPDiagnosticsToMarkers.java:210)
+	at org.eclipse.lsp4e.operations.diagnostics.LSPDiagnosticsToMarkers$1.runInWorkspace(LSPDiagnosticsToMarkers.java:184)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:43)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.lsp4e 2 0 2024-11-28 16:57:56.917
+!MESSAGE Could not resolve completion items due to timeout after 500 milliseconds in `completionItem/resolve`
+!STACK 0
+java.util.concurrent.TimeoutException
+	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
+	at org.eclipse.lsp4e.operations.completion.LSCompletionProposal.resolveItem(LSCompletionProposal.java:372)
+	at org.eclipse.lsp4e.operations.completion.LSCompletionProposal.getAdditionalProposalInfo(LSCompletionProposal.java:338)
+	at org.eclipse.lsp4e.operations.completion.LSCompletionProposal.getAdditionalProposalInfo(LSCompletionProposal.java:1)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$Timer$2$1.run(AdditionalInfoController.java:116)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-11-28 16:59:55.239
+!MESSAGE Classpath changed for project: SpringBoot-Data-Jpa
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-11-28 17:14:49.709
+!MESSAGE Classpath changed for project: SpringBoot-Data-Jpa
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-11-28 17:14:50.337
+!MESSAGE Classpath changed for project: SpringBoot-Data-Jpa
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-11-28 17:14:52.375
+!MESSAGE Classpath changed for project: SpringBoot-Data-Jpa
