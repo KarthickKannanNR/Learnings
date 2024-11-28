@@ -1,0 +1,10 @@
+package com.java.concepts;
+
+public class RecordClassRunner {
+
+	public static void main(String[] args) {
+		RecordClass rc = new RecordClass("karthick");
+		System.out.println(rc.age());
+	}
+
+}

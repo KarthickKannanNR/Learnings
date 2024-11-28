@@ -1,0 +1,13 @@
+package com.java.concepts;
+
+public class RecordClassRunner {
+
+	public static void main(String[] args) {
+		RecordClass rc = new RecordClass(18,"karthick");
+		System.out.println(rc.age());
+		RecordClass rc2 = new RecordClass(18,"karthick");
+		System.out.println(rc.equals(rc2));
+
+	}
+
+}
