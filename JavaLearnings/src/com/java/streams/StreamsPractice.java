@@ -212,7 +212,7 @@ public class StreamsPractice {
 		
 		//Write a Java 8 program to find the second highest number in a list of integers.
 		List<Integer> intList  = Arrays.asList(3,4,2,5,6,7,1);
-		Optional<Integer> secondLargest = intList.stream().sorted((a,b)-> a-b).skip(1).findFirst();
+		Optional<Integer> secondLargest = intList.stream().sorted((a,b)-> b.compareTo(a)).skip(1).findFirst();
 		System.out.println("SecondLargest "+secondLargest.orElseGet(()->0));
 		
 		System.out.println("Duplicate Values \n");

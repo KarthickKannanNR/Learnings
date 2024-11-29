@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +41,7 @@ public class HomeController {
 	}
 	
 	@GetMapping("findUser")
+	//@Cacheable(value = "userCache" ,key = "#userId")
 	public UserVO findUser(@RequestParam int userId) throws Exception {
 		return userService.findUserById(userId);
 	}

@@ -61,6 +61,9 @@ public class CollectionsCheck {
 		map.put(3, "a");
 		map.put(120, "a");
 		System.out.println(map);
+		
+	    int i = Integer.valueOf("1");
+	    System.out.println(i);
 	}
 	
 	public static void hashTable() {

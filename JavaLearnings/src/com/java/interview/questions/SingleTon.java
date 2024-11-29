@@ -5,6 +5,7 @@ public class SingleTon implements Runnable{
 	private static SingleTon instance = null;
 	private int value;
 	
+	
 	private SingleTon() {
 		
 	}
@@ -13,7 +14,7 @@ public class SingleTon implements Runnable{
 		if(instance == null) {
 			synchronized (SingleTon.class) {
 				if(instance == null) {
-					return new SingleTon(); 		
+					return instance = new SingleTon(); 		
 				}
 			}
 	    }

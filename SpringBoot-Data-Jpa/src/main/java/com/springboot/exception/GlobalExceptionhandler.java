@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionhandler {
 	
 	@ExceptionHandler({UserNotFoundException.class,Exception.class})
+	//Prblem Detail Introduced in Spring Boot 2.3.0
 	public ProblemDetail handleUserExceptoin(Exception exception) {
 		return ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, exception.getMessage());
 	}
