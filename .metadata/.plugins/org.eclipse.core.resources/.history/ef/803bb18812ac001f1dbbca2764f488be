@@ -1,9 +1,0 @@
-package com.java.concepts;
-
-public class RecordClassRunner {
-
-	public static void main(String[] args) {
-		RecordClass rc = new RecordClass(20,"karthick");
-	}
-
-}
