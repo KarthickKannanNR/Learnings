@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename type &apos;com.java.Multithreading.SharedResource&apos; to &apos;ProducerConsumerExample&apos;&#x0D;&#x0A;- Original project: &apos;JavaLearnings&apos;&#x0D;&#x0A;- Original element: &apos;com.java.Multithreading.SharedResource&apos;&#x0D;&#x0A;- Renamed element: &apos;com.java.Multithreading.ProducerConsumerExample&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;SharedResource&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;com.java.Multithreading{SharedResource.java[SharedResource" matchStrategy="1" name="ProducerConsumerExample" qualified="false" references="true" similarDeclarations="false" stamp="1730564414430" textual="false" version="1.0"/>
-</session>

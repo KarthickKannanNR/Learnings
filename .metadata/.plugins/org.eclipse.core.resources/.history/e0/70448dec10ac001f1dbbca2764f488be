@@ -1,7 +1,0 @@
-package com.java.concepts;
-
-public record RecordClass(int id,String name) {
-	
-	public RecordClass(int id,String name){
-	}
-}

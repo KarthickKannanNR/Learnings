@@ -1,0 +1,31 @@
+package com.java.interview.questions;
+
+
+public class SingleTon implements Runnable{
+	private static SingleTon instance = null;
+	private int value;
+	
+	private SingleTon() {
+		
+	}
+	
+	public static SingleTon createInstance() {
+		if(instance == null) {
+			synchronized (SingleTon.class) {
+				if(instance == null) {
+					return instance = new SingleTon(); 		
+				}
+			}
+	    }
+		
+		return instance;
+	}
+
+	@Override
+	public void run() {
+		createInstance();		
+	}
+
+}
+
+

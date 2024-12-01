@@ -1,0 +1,210 @@
+package com.java.streamsInterviewQA;
+
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+public class ConceptOfTheDay {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		streamsPractice();
+	}
+
+	
+	public static void streamsPractice() {
+		
+		List<Integer> numList = Arrays.asList(5,12,34,5,1,8,56,0,1,45,23,7);
+		
+		//seperate odd and even numbers
+		System.out.println("seperate odd and even numbers");
+		Map<Boolean,List<Integer>> OddEvenNums = numList.stream().collect(Collectors.partitioningBy(num -> num%2 ==0));
+		System.out.println(OddEvenNums);
+		
+		
+		//remove duplicates elements from list
+		List<String> nameList = Arrays.asList("karthick","kk","akash","alamelu","rajan","karthick");
+		System.out.println("remove duplicates elements from list");
+		nameList.stream().distinct().forEach(System.out::println);
+		
+		//frequency of each chareacter in string
+		String name = "karthic kannan";
+		Map<String,Long> charFrequencyMap =  Arrays.stream(name.split("")).filter(c -> !c.isBlank() && !c.isEmpty()).collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+		System.out.println("frequency of each chareacter in string");
+		System.out.println(charFrequencyMap);
+		
+		
+		//frequency of each element in an array
+		Map<String,Long> elmFrequency = nameList.stream().collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+		System.out.println("frequency of each chareacter in string");
+		System.out.println(elmFrequency);
+		
+		//sorting the list in reverse order
+		List<String> revSortedList = nameList.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+		System.out.println("sorting the list in reverse order");
+		System.out.println(revSortedList);
+		
+		//sorting num list
+		List<Integer> sortedNumList =  numList.stream().sorted((n1,n2) -> n1<n2?1:-1).toList();
+		System.out.println("sorting num list");
+		System.out.println(sortedNumList);
+		
+		//join list of String with prefix suffix and delimeter
+		String joinDelimiters =  nameList.stream().collect(Collectors.joining(",","[","]"));
+		System.out.println("join list of String with prefix suffix and delimeter");
+		System.out.println(joinDelimiters);
+		
+		//print multiples of 5 from the list
+		List<Integer> multiplesOf5 = numList.stream().filter(n -> n%5==0).toList();
+		System.out.println("print multiples of 5 from the list");
+		System.out.println(multiplesOf5);
+		
+		//finding max num
+		int maxNum = numList.stream().max(Comparator.naturalOrder()).get();
+		//numList.stream().reduce(Integer::max).get();
+		System.out.println("finding max num");
+		System.out.println(maxNum);
+		
+		//finding min num
+		int minNum = numList.stream().min(Comparator.naturalOrder()).get();
+		System.out.println("finding min num");
+		System.out.println(minNum);
+		
+		//merge two unsorted array into single sorted array
+		List<Integer> numList2 = Arrays.asList(1,5,22,823,46,23,90,27,41);
+		List<Integer> mergedSortedList = Stream.concat(numList.stream() , numList2.stream()).sorted((n1,n2) -> n2.compareTo(n1)).toList();
+		System.out.println("merge two unsorted array into single sorted array");
+		System.out.println(mergedSortedList);
+		
+		
+		//anagram program
+		String str1 = "karthick       ";
+		String str2 = "karthick ";
+		
+		str1 = Stream.of(str1.replaceAll("\\s", "")).map(String::toUpperCase)
+				                        .collect(Collectors.joining());
+		
+		str2 = Stream.of(str1.replaceAll("\\s", "")).map(String::toUpperCase)
+				                        .collect(Collectors.joining());
+		
+		System.out.println("Anagram "+str1.equals(str2));
+		
+		//merge 2 unsorted arr into single sorted arr withoout duplicates
+		List<Integer> mergedArrWithDistinctVal =  Stream.concat(numList.stream(), numList2.stream()).sorted().distinct().toList();
+		System.out.println("merged 2 unsorted arr into single sorted arr without duplicates");
+		System.out.println(mergedArrWithDistinctVal);
+		
+		//sum of all digits of a number
+		int nums = 657647;
+		int sumOfDigits = Stream.of(String.valueOf(nums).split(""))
+		                              .mapToInt(Integer::parseInt).reduce(Integer::sum).getAsInt();
+        System.out.println("sum of all digits of a number :"+sumOfDigits);
+        
+        
+        //converting all first letter to uppercase
+        List<String> firstLetterConvertedUppercase = nameList.stream().map(s -> s.substring(0,1).toUpperCase()
+        		                                   .concat(s.substring(1))).toList();
+        
+        System.out.println("converting all first letter to uppercase"+firstLetterConvertedUppercase);
+        
+        //find second largest num
+        int secondLargestNum = numList2.stream().sorted(Comparator.reverseOrder()).skip(1).findFirst().get();
+        System.out.println("second largest num :"+secondLargestNum);
+        
+        //first N min numbers from list
+        List<Integer> firstNMinNums = numList.stream().sorted().limit(3).toList();
+        System.out.println("first 3 min numbers from list :"+firstNMinNums);
+        
+        //first N max numbers from list
+        List<Integer> firstNMaxNumbers = numList.stream().sorted(Comparator.reverseOrder()).limit(3).toList();
+        System.out.println("First 3 max numbers : "+firstNMaxNumbers);
+        
+        //sort list of string in increasing order using their length
+        List<String> sortedStrUsingLen = nameList.stream().sorted((a,b) -> a.length() < b.length()?-1:1).toList();
+        System.out.println(nameList.stream().sorted(Comparator.comparing(String::length,Comparator.reverseOrder())).toList());
+        System.out.println("sort list of string in increasing order using their length : "+sortedStrUsingLen);
+        
+        //common elements between 2 list
+        List<Integer> commonElm = numList.stream().filter(numList2::contains).toList();
+        System.out.println("common elements between 2 list :"+commonElm);
+        
+        //sum and avg all elms of arr
+        System.out.println("sum :"+ numList.stream().mapToInt(Integer::intValue).sum());
+        System.out.println("sum :"+ numList.stream().reduce(Integer::sum).get());
+
+        double[] doubleArr = {5,12,34,5,1,8,56,0,1,45,23,7};
+        System.out.println("With double arr[] : "+Arrays.stream(doubleArr).average().getAsDouble());
+        System.out.println("Avg : "+numList.stream().mapToDouble(Integer::intValue).average().getAsDouble());
+        
+        //reverse each word of a string in list
+       List<String> reversedStringList = nameList.stream().map(n -> new StringBuffer(n).reverse().toString()).toList();
+       System.out.println("Reversed each string in the list :"+reversedStringList);
+       
+       //reverse a string contains space
+       String actualStr = "karthick kannan";
+       String reversedStr = Arrays.stream(actualStr.split(" ")).map(word -> new StringBuffer(word).reverse())
+                                    .collect(Collectors.joining(" "));   
+       System.out.println("reversed a sring :"+reversedStr);
+       
+       
+       //reverse an integer array
+       int intArr[] = {1,2,3,4,5};
+       int reversedArr[] = IntStream.rangeClosed(1, intArr.length)
+    		                        .map(i -> intArr[intArr.length -i]).toArray();
+       System.out.println("reversed Arr : ");
+       Arrays.stream(reversedArr).forEach((i) -> System.out.print(i+" "));
+       
+       //sum of n natural numbers
+       IntStream.rangeClosed(1,11).sum();
+       
+       //filter string which starts with number
+       System.out.println();
+       List<String> strNumList = Arrays.asList("8karthick","1akash","java");
+       List<String> strWithNum = strNumList.stream().filter(val -> Character.isDigit(val.charAt(0))).toList();
+       System.out.println("Strings start with num : "+strWithNum);
+       
+       //palindrome program in java8
+       String palindromeStr = "racecar";
+       boolean isPalindrome = IntStream.rangeClosed(0, palindromeStr.length()/2)
+                .allMatch(i -> palindromeStr.charAt(i) == palindromeStr.charAt(palindromeStr.length()-i-1));
+       System.out.println("Given string is palindrome : "+isPalindrome);
+       
+       //find duplicate number from list
+       System.out.println("find duplicate number from list");
+       List<Integer> duplicateNums = numList.stream().collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
+                       .entrySet().stream().filter(map -> map.getValue() > 1)
+                       .map(Map.Entry::getKey).toList();
+       System.out.println("find duplicates using grpBy : "+duplicateNums);
+      
+      //last element of an array
+      System.out.println("getting last digit : "+numList.stream().skip(numList.size()-1).findFirst().get());
+      
+      //fibonacci series sum
+      int n= 5;
+      long fiboCount =  Stream.iterate(new int[] {0,1},f -> new int[] {f[1],f[0]+f[1]})
+            .limit(n).mapToInt(f -> f[0]).sum();
+      System.out.println("fibonnaci of "+n +" is :"+ fiboCount);
+      System.out.println();
+      
+      //fibonacci series
+      Stream.iterate(new int[] {0,1}, f-> new int[] {f[1],f[0]+f[1]})
+            .limit(5)
+            .forEach(System.out::println);
+      
+      //parrallel Stream
+      long start = System.currentTimeMillis(); 
+      long coun = Stream.iterate(0, f -> f+1).limit(100).count();
+      System.out.println(coun);
+      long end = System.currentTimeMillis();
+      System.out.println(end-start);
+
+
+	}
+}

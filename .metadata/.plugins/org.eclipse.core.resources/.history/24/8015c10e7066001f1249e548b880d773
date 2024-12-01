@@ -1,9 +1,0 @@
-package com.java.syncronizedExample;
-
-class Cake extends Thread{
-	
-}
-
-public class ThreadBaking {
-
-}
