@@ -21,7 +21,7 @@ public class ConceptOfTheDay {
 	
 	public static void streamsPractice() {
 		
-		List<Integer> numList = Arrays.asList(5,12,34,5,1,8,56,0,1,45,23,7);
+		final List<Integer> numList = Arrays.asList(5,12,34,5,1,8,56,0,1,45,24,7);
 		
 		//seperate odd and even numbers
 		System.out.println("seperate odd and even numbers");
@@ -198,6 +198,19 @@ public class ConceptOfTheDay {
             .limit(5)
             .forEach(System.out::println);
       
+      //parrallel Stream
+      long start = System.currentTimeMillis(); 
+      long coun =  Stream.iterate(0, f -> f+1).limit(100).count();
+      System.out.println(coun);
+      long end = System.currentTimeMillis();
+      System.out.println(end-start);
+      
+      System.out.println(numList);
+      numList.stream().map(num -> num*2)
+                      .filter(vals -> numList.indexOf(vals)!=-1)
+                      .forEach(index -> System.out.println(index));
+      
+
 
 	}
 }

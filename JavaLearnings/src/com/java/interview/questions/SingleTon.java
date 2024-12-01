@@ -1,7 +1,9 @@
 package com.java.interview.questions;
 
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 
-public class SingleTon implements Runnable{
+public class SingleTon{
 	private static SingleTon instance = null;
 	private int value;
 	
@@ -21,10 +23,9 @@ public class SingleTon implements Runnable{
 		
 		return instance;
 	}
-
-	@Override
-	public void run() {
-		createInstance();		
+	
+	private Object readResolve() throws ObjectStreamException{
+		return instance;
 	}
 
 }

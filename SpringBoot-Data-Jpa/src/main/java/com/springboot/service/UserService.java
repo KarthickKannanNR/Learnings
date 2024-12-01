@@ -36,7 +36,7 @@ public class UserService {
 
 	public List<UserVO> getAllUsers() {
 		// TODO Auto-generated method stub
-		return userRepo.findAll();
+		return userRepo.findAll(); 
 	}
 
 

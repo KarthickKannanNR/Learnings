@@ -1,5 +1,7 @@
 package com.java.optionalExample;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
@@ -16,9 +18,9 @@ public class OptionalExample {
 	}
 	
 	public static void ifPresentExample() {
-		Optional<String>  optional = Optional.ofNullable(null);
-		Consumer<String> consumer = name -> System.out.println(name.length());
-		optional.ifPresent(name -> System.out.println(name.length()));
+		Optional<String>  optional = Optional.ofNullable("karthick");
+		Consumer<String> consumer = name -> System.out.println("If Present ".concat(Integer.valueOf(name.length()).toString()));
+		optional.ifPresent(consumer);
 	}
 	
 	public static void orElseExample() {
@@ -40,9 +42,13 @@ public class OptionalExample {
 	}
 	
 	public static void orElseThrow() {
+		 List<String> names = Arrays.asList("karthick");
+		//List<String> names2 = names;
+		names.remove("akash");
+		System.out.println(names);
+		//System.out.println(names2);
 		Optional<String> optional = Optional.ofNullable(null);
 		System.out.println("orElseThrow() :");
-
 		System.out.println("orElseThrow() :"+optional.orElseThrow(() -> new StackOverflowError()));
 
 	}

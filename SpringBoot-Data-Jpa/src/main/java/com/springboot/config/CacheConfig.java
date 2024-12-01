@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
@@ -16,8 +17,10 @@ import jakarta.annotation.PostConstruct;
 
 @Configuration
 @EnableCaching
+@ConfigurationProperties
 public class CacheConfig {
 
+	
 	@Autowired
 	private CacheManager cacheManager;
 	
