@@ -1,0 +1,28 @@
+package com.java.concepts;
+
+public class Loops {
+
+	public static void loopConcepts() {
+		int var =1;
+		for(;;) {
+			if(var>10) break;
+			System.out.println(var);
+			var++;
+		}
+	}
+	
+	public static void castingCheck() {
+		//boolean can't be cast , we get a compilation error
+//		String s = "false";
+//		boolean n = (boolean) s;
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		loopConcepts();
+
+	}
+
+	
+	
+}
