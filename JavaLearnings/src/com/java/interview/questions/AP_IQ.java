@@ -46,7 +46,7 @@ public class AP_IQ{
 	public static void getCombinationOfSum() {
 		int []arr = new int[]{3, 6, 8, -8, 10, 8 };
 		String []pairArr = new String[arr.length];
-		//{"6,10" , ""}
+		//{"6:10" , ""}
 		int matchNum = 16;
 		int count =0;
 		for(int i=0;i<arr.length;i++){

@@ -3,9 +3,9 @@ package com.java.Multithreading;
 import static  com.java8.innerClasses.NonStaticInnerClass.staticOuterfield;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 class SharedResource  {
 
@@ -40,7 +40,7 @@ public class ProducerConsumerExample {
         List<Integer> num = new ArrayList<>();
         num.add(0);
         
-        
+       Future<Integer> s = Executors.newSingleThreadExecutor().submit(() ->6);
 
         // Producer thread
         new Thread(() -> {

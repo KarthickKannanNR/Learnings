@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.ListIterator;
 
 import com.java.interview.reduce.ReduceExample;
-import com.java.oops.AbstractExample;
 
 class Parent {
 	

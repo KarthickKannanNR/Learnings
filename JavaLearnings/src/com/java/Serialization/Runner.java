@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.Base64;
 
 interface Topic{
 	void understand();
@@ -41,6 +42,23 @@ class serializableClass implements Serializable{
 	        this.s = s; 
 	        this.k = k;
 	    } 
+	    
+	    
+	    private void writeObject(ObjectOutputStream oi) throws IOException, ClassNotFoundException{
+	    	s = Base64.getEncoder().encodeToString(s.getBytes());
+	    	k = Base64.getEncoder().encodeToString(k.getBytes());
+	    	oi.defaultWriteObject();
+	    	oi.writeObject(s);
+	    	oi.writeObject(k);
+	    }
+	    
+	    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	        in.defaultReadObject();  // Read other fields
+	        String s = (String) in.readObject();  // Read the encrypted name
+	        String k = (String) in.readObject();  // Read the encrypted name
+	        this.s = new String(Base64.getDecoder().decode(s));  // Decrypt the name
+	        this.k = new String(Base64.getDecoder().decode(k));  // Decrypt the name
+	    }
 }
 public class Runner {
 
@@ -49,14 +67,14 @@ public class Runner {
 		serializableClass s1 =  new serializableClass(27, "karthick","kannan");
 		
 		// Serializing 'serializableClass' 
-        FileOutputStream fos = new FileOutputStream("D:\\serialize.txt"); 
-        ObjectOutputStream oos = new ObjectOutputStream(fos); 
-        oos.writeObject(s1); 
+        FileOutputStream fos = new FileOutputStream("D:\\serialize.txt");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(s1);
         
         
         //DeSerializing
-        FileInputStream fis = new FileInputStream("D:\\serialize.txt"); 
-        ObjectInputStream ois = new ObjectInputStream(fis); 
+        FileInputStream fis = new FileInputStream("D:\\serialize.txt");
+        ObjectInputStream ois = new ObjectInputStream(fis);
         serializableClass s2 =  (serializableClass) ois.readObject(); 
         System.out.println(s2.i);
         System.out.println(s2.s);
@@ -64,9 +82,16 @@ public class Runner {
         
 	}
 	
+	public static void IntegerCheck() {
+		Integer n = 120;
+		Integer n2 = 120;
+		
+		System.out.println(n == n2);
+	}
+	
 	public static void main(String args[]) throws IOException, ClassNotFoundException {
 		// TODO Auto-generated method stub
-		serializationExample();
+		IntegerCheck();
 
 	}
 

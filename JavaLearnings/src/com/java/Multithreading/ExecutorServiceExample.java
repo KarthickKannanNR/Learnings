@@ -30,7 +30,7 @@ public class ExecutorServiceExample {
 
 	
 	
-	public static void main(String[] args) throws InterruptedException, ExecutionException {
+	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
 		
 		List<Callable<Integer>> callableList = new ArrayList<>();
