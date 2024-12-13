@@ -88,15 +88,21 @@ public class AccentureInterviewQuestions extends ReduceExample{
 		
 		Iterator<String> iterator = list.listIterator();
 		
-		while(iterator.hasNext()) {
-			System.out.println(iterator.next());
-		}
+		//it will add k without any error but loop will run infinitely
+		//when we try to ge the value using iterator.next() - concurrentModException will occur
+		int count =1;
+		/*
+		 * while(iterator.hasNext()) { if(count==1) { list.add("jyug"); //It will throw
+		 * illegalStateException //iterator.remove(); count++; }
+		 * System.out.println(iterator.next()); }
+		 */
 		
 		
 		ListIterator<String> listIterator = list.listIterator();
 		
 		while(listIterator.hasNext()) {
-			listIterator.add("D");
+//			listIterator.add("D");
+            list.add("Z");
 			System.out.println("Index "+listIterator.nextIndex()+" " +listIterator.next());
 			if(!listIterator.hasNext()) {
 				while(listIterator.hasPrevious()) {
