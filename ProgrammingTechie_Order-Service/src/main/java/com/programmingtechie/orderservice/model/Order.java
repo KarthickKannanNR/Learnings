@@ -8,14 +8,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "t_order")
 public class Order {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	private String orderNUmber;
+	private String orderNumber;
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<OrderLineItems> orderLineItems;
 	public long getId() {
@@ -25,10 +27,10 @@ public class Order {
 		this.id = id;
 	}
 	public String getOrderNUmber() {
-		return orderNUmber;
+		return orderNumber;
 	}
 	public void setOrderNUmber(String orderNUmber) {
-		this.orderNUmber = orderNUmber;
+		this.orderNumber = orderNUmber;
 	}
 	public List<OrderLineItems> getOrderLineItems() {
 		return orderLineItems;

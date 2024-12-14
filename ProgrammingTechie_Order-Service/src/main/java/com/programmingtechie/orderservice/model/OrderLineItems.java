@@ -6,8 +6,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "orderline_items")
 public class OrderLineItems {
 
 	@Id
@@ -15,7 +17,7 @@ public class OrderLineItems {
 	private Long id;
 	private String skuCode;
 	private BigDecimal price;
-	private Integer quatity;
+	private Integer quantity;
 	public Long getId() {
 		return id;
 	}
@@ -35,10 +37,10 @@ public class OrderLineItems {
 		this.price = price;
 	}
 	public Integer getQuatity() {
-		return quatity;
+		return quantity;
 	}
 	public void setQuatity(Integer quatity) {
-		this.quatity = quatity;
+		this.quantity = quatity;
 	}
 	
 	

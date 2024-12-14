@@ -24,12 +24,12 @@ public class OrderLineItemsDTO {
 	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
-	public Integer getQuatity() {
-		return quatity;
+	public Integer getQuantity() {
+		return quantity;
 	}
-	public void setQuatity(Integer quatity) {
-		this.quatity = quatity;
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
 	}
 	private BigDecimal price;
-	private Integer quatity;
+	private Integer quantity;
 }
