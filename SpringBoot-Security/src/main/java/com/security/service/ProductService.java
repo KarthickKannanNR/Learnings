@@ -20,8 +20,9 @@ public class ProductService {
 	
 	List<Product> productList;
 	
-	@Autowired
-	PasswordEncoder encoder;
+	/*
+	 * @Autowired PasswordEncoder encoder;
+	 */
 	
 	@Autowired
 	UserInfoRepository userRepo;
@@ -43,7 +44,7 @@ public class ProductService {
 	}
 	
 	public String addUser(UserInfo userInfo) {
-	 userInfo.setPassword(encoder.encode(userInfo.getPassword()));	
+	 userInfo.setPassword(userInfo.getPassword());	
 	 UserInfo user = userRepo.save(userInfo);
 	 if(user == null) {
 		 return "unable to save user";

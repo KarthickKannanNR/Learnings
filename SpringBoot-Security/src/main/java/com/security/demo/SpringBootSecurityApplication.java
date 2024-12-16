@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.security.*"})
+@EnableJpaRepositories(basePackages = {"com.security.repository"})
 public class SpringBootSecurityApplication {
 
 	public static void main(String[] args) {

@@ -303,8 +303,23 @@ public class StreamsPractice {
         		                                               .collect(Collectors.toList());
         
         System.out.println(lastLetterCapitaliZed);
-
-                
+        
+        
+        int nums = 12345;
+        int sumOfInt = String.valueOf(nums).chars().map(Character::getNumericValue).sum();
+        System.out.println(sumOfInt);
+        
+        
+        //to get duplicates nums
+        System.out.println("duplicate nums from list");
+        List<Integer> duplicateNums =  Arrays.asList(arr1).stream()
+        		                                          .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
+                                                          .entrySet()
+                                                          .stream()
+                                                          .filter(map -> map.getValue()>1)
+                                                          .map(map -> map.getKey()).toList();
+        System.out.println(duplicateNums);
+                      
 	}
 	
 	public static List<Student> getStudentList() {

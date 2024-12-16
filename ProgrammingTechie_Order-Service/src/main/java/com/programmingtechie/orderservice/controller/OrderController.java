@@ -24,4 +24,5 @@ public class OrderController {
 		orderService.placeOrder(orderRequest);
 		return new ResponseEntity<String>("order placed successfully",HttpStatus.OK);
 	}
+	
 }
