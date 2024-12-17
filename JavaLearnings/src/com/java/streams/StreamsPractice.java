@@ -127,7 +127,7 @@ public class StreamsPractice {
 		int maxAge = list.stream().mapToInt(st -> st.getAge()).max().getAsInt(); 
 		System.out.println("Max age of students");
 		System.out.println(maxAge);
-		Student maxAgeStudent = list.stream().max((s1,s2)-> s1.getAge()<s2.getAge()?-1:1).get();
+		Student maxAgeStudent = list.stream().min((s1,s2)-> s1.getAge()<s2.getAge()?-1:1).get();
 		System.out.println("max Age Student "+ maxAgeStudent);
 		
 		list.stream().map(s -> s.getFirstName().toUpperCase()).toList();
@@ -319,6 +319,8 @@ public class StreamsPractice {
                                                           .filter(map -> map.getValue()>1)
                                                           .map(map -> map.getKey()).toList();
         System.out.println(duplicateNums);
+        
+        
                       
 	}
 	
