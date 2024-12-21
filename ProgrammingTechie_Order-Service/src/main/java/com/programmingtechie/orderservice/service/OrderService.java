@@ -26,7 +26,7 @@ public class OrderService {
 	@Autowired
 	private InventoryFeign inventoryFeign;
 	
-	public void placeOrder(OrderRequest orderRequest) {
+	public String placeOrder(OrderRequest orderRequest) {
 		Order order = new Order();
 		order.setOrderNUmber(UUID.randomUUID().toString());
 		List<OrderLineItems> orderList = orderRequest.getOrderlineItemsDTO().stream().map(this::maptoDTO).toList();
@@ -51,6 +51,7 @@ public class OrderService {
                  
 		if (inStockStatus) {
 			orderRepository.save(order);
+			return "order placed successfully";
 		}else {
 			throw new IllegalArgumentException("This product is currently out of stock");
 		}

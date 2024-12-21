@@ -26,8 +26,9 @@ public class InventoryController {
 	InventoryService inventoryService;
 	
 	@GetMapping("checkStock")
-	public List<InventoryResponse> checkStockAvailability(@RequestParam List<String> skuCode) {
+	public List<InventoryResponse> checkStockAvailability(@RequestParam List<String> skuCode) throws InterruptedException {
 		System.out.println(portNUm);
+		Thread.sleep(20000);
 		return inventoryService.checkStockAvailability(skuCode);
 	}
 	

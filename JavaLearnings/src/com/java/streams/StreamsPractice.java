@@ -12,17 +12,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.OptionalInt;
 import java.util.Set;
 import java.util.function.Function;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -40,7 +37,6 @@ public class StreamsPractice {
 			int i =0;
 		    int iy=0;
 		    ujyg =78;
-			throw new Exception();
 		} catch (ArrayIndexOutOfBoundsException e) {
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -53,7 +49,9 @@ public class StreamsPractice {
 	}
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
-		practiceProblemsWithStudents();
+		//practiceProblemsWithStudents();
+		//convertStrToInt();
+		convertStrToIntApproach2();
 	}
 	
 	public static void tryWithResourceForStream() throws IOException {
@@ -369,8 +367,47 @@ public class StreamsPractice {
 	 
 	 System.out.println("sum of odd numbers");
 	 System.out.println(numList.stream().filter(num -> num%2 !=0).map(n -> n*n).reduce(Integer::sum));
-
-
 	}
 
+	public static void flatMap() {
+		List<List<Integer>> nestedList = Arrays.asList(
+				                   			Arrays.asList(45,1,78,2),
+				                   			Arrays.asList(1,43,12,56,89,1,11,20),
+				                   			Arrays.asList(1,43,12,56,89,1,11,20),
+				                   			Arrays.asList(10,16,72,39,71,40)
+				                         );
+		System.out.println("even list from nested list"+ nestedList.stream().flatMap(List::stream).filter(num -> num%2 ==0).toList());
+		
+	} 
+	
+	public static void convertStrToInt() {
+		List<String> strList = Arrays.asList("6","a","78","jgy");
+		
+		List<Integer> numList = strList.stream().map( n -> {
+							try {
+								return Integer.parseInt(n);
+							}catch (Exception e) {
+								return null;
+							}
+		                  }
+				         ).filter(i -> i!=null)
+		                  .toList();
+		numList.forEach(n -> System.out.println(n +" "));
+	}
+	
+	public static void convertStrToIntApproach2() {
+		List<String> strList = Arrays.asList("6","a","78","jgy");
+		
+		List<Integer> numList =  strList.stream().map(n ->{
+								try {
+									return Optional.ofNullable(Integer.valueOf(n));
+								} catch (Exception e) {
+									return Optional.<Integer>empty();	
+								}
+	                      	}
+				         ).filter(Optional::isPresent)
+		                  .map(Optional::get)
+		                  .toList();
+		numList.forEach(n -> System.out.println(n+" "));
+	}
 }

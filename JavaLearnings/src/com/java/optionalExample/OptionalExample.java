@@ -17,6 +17,11 @@ public class OptionalExample {
 		System.out.println("IsEmpty() :"+optional.isEmpty());
 	}
 	
+	public static void empty() {
+		Optional<String> emptyOptional = Optional.empty();
+		System.out.println("Optional.empty() "+emptyOptional.orElseGet(()->"returned empty optional"));
+	}
+	
 	public static void ifPresentExample() {
 		Optional<String>  optional = Optional.ofNullable("karthick");
 		Consumer<String> consumer = name -> System.out.println("If Present ".concat(Integer.valueOf(name.length()).toString()));
@@ -61,7 +66,8 @@ public class OptionalExample {
 		orElseExample();
 		get();
 		orElseGetExample();
-		orElseThrow();
+		//orElseThrow();
+		empty();
 	}
 	
 

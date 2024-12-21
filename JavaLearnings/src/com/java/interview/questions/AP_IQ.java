@@ -45,21 +45,22 @@ public class AP_IQ{
 	
 	public static void getCombinationOfSum() {
 		int []arr = new int[]{3, 6, 8, -8, 10, 8 };
-		String []pairArr = new String[arr.length];
+		//String []pairArr = new String[arr.length];
 		//{"6:10" , ""}
 		int matchNum = 16;
 		int count =0;
 		for(int i=0;i<arr.length;i++){
-			for(int j=i;j<arr.length;j++){
+			for(int j=i+1;j<arr.length;j++){
 				if(arr[i]+arr[j]==matchNum){
-					pairArr[count] = arr[i]+":"+arr[j];
+                    System.out.println("Pair found: " + arr[i] + " and " + arr[j]);
 					count++;
 				}
 			}
 		}
 		
-		Arrays.asList(pairArr).stream()
-		.forEach(System.out::println);
+		/*
+		 * Arrays.asList(pairArr).stream() .forEach(System.out::println);
+		 */
 	}
 
 	public void m1(StringBuffer s) {
@@ -73,9 +74,9 @@ public class AP_IQ{
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		//getCombinationOfSum();
+		getCombinationOfSum();
 		//AP_IQ obj = new AP_IQ();
-		streams();
+		//streams();
 	}
 	
 
