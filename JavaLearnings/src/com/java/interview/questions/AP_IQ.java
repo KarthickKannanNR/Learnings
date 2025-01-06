@@ -38,8 +38,17 @@ public class AP_IQ{
 	empByStatu.put(null, new Employee(5, "Eve", 42270,null));
 	empByStatu.put(null, new Employee(4, "David", 49000,"Inactive"));
 	
-	System.out.println(empByStatu);
+	System.out.println(empByStatus);
+	
+	String secondHighestSalEmp = details.stream()
+	       .sorted((emp1,emp2) -> Double.compare(emp2.getSalary(), emp1.getSalary()))
+	       .peek(System.out::println)
+	       .skip(1)
+	       .findFirst()
+	       .map(Employee::getName)
+	       .orElse("No emp found with second highest salary");
 
+	System.out.println(secondHighestSalEmp);
 	 
 	}
 	
@@ -74,9 +83,9 @@ public class AP_IQ{
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		getCombinationOfSum();
+		//getCombinationOfSum();
 		//AP_IQ obj = new AP_IQ();
-		//streams();
+		streams();
 	}
 	
 

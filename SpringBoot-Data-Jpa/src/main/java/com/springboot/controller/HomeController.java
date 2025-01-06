@@ -1,23 +1,23 @@
 package com.springboot.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.dto.UserCreationRequest;
+import com.springboot.entity.Product;
 import com.springboot.entity.UserVO;
+import com.springboot.service.ProductService;
 import com.springboot.service.UserService;
 
 
@@ -26,6 +26,13 @@ public class HomeController {
 
 	@Autowired
 	private UserService userService;
+	
+	private ProductService productService;
+	
+	@Autowired
+	public HomeController(ProductService productService) {
+		this.productService = productService;
+	}
 	
 	@PostMapping("addUser")
 	public String addUser(@RequestBody UserVO user) {
@@ -47,7 +54,7 @@ public class HomeController {
 	}
 
 	@GetMapping("allUsers")
-	@Cacheable
+	//@Cacheable
 	public ResponseEntity<List<UserVO>>  getAllUsers(){
 		return new ResponseEntity<List<UserVO>>(userService.getAllUsers(),HttpStatus.OK);
 	}
@@ -104,6 +111,12 @@ public class HomeController {
 	public String createPrimeUser(@RequestBody UserCreationRequest creationRequest) {
 		String msg = userService.createPrimeUser(creationRequest);
 		return msg;
+	}
+	
+	@GetMapping("/getAllProducts")
+	public List<Product> getAllProducts(){
+		return productService.getAllProduct();
+		
 	}
 	
 }

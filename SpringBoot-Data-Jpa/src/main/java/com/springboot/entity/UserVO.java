@@ -1,6 +1,8 @@
 package com.springboot.entity;
 
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,7 +13,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "USERINFO")
-public class UserVO {
+public class UserVO{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

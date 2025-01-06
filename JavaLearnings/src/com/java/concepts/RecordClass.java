@@ -23,5 +23,10 @@ public record RecordClass(int age,String name){
 		this(18,name);
 	}
 	
+	public RecordClass(int age) {
+		//  Below line is used for custom initialize the value	
+			this(age,"karthick");
+		}
+	
 	
 }

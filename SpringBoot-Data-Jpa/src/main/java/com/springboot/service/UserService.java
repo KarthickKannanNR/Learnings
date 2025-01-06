@@ -5,13 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.springboot.dto.UserCreationRequest;
-import com.springboot.entity.PaymetVO;
 import com.springboot.entity.UserVO;
 import com.springboot.exception.UserNotFoundException;
 import com.springboot.repository.PaymentRepo;
@@ -36,6 +34,7 @@ public class UserService {
 
 	public List<UserVO> getAllUsers() {
 		// TODO Auto-generated method stub
+		System.out.println(userRepo.findAll());
 		return userRepo.findAll(); 
 	}
 

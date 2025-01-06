@@ -21,7 +21,7 @@ public class DaemonThreadEx {
 		// TODO Auto-generated method stub
 		ThreadClass tc = new ThreadClass(1);
 		Thread t = new Thread(tc);
-		//t.setDaemon(true);
+		t.setDaemon(true);
 		t.start();
 		System.out.println("main thread");
 		tc.value = 5;

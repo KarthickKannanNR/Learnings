@@ -4,14 +4,14 @@ public class Employee {
 
 	private int id;
 	private String name;
-	private int salary;
+	private double salary;
 	private String status;
 	
-	public Employee(int i, String string, int j, String string2) {
+	public Employee(int id, String name, double salary, String status) {
 		this.id = id;
-		this.name = string;
-		this.salary = j;
-		this.status = string2;
+		this.name = name;
+		this.salary = salary;
+		this.status = status;
 		
 	}
 	@Override
@@ -33,10 +33,10 @@ public class Employee {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getSalary() {
+	public double getSalary() {
 		return salary;
 	}
-	public void setSalary(int salary) {
+	public void setSalary(double salary) {
 		this.salary = salary;
 	}
 	public String getStatus() {

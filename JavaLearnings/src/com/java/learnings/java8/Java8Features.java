@@ -41,11 +41,60 @@ import com.java.Multithreading.InterruptExample;
 
 
 public class Java8Features extends InterruptExample{
+		static ArrayList<Employee> empList = new ArrayList<>();
+	static {
+		empList.add(new Employee(1,"kannan","DEV",Arrays.asList(new Projects("SmartBots"),new Projects("Data Zense")),30000,"Male"));
+		empList.add(new Employee(1,"karthick","DEV",Arrays.asList(new Projects("SmartBots"),new Projects("Data Zense")),23000,"Male"));
+		empList.add(new Employee(1,"Ramesh","QA",Arrays.asList(new Projects("SmartBots"),new Projects("Data Zense")),25000,"Male"));
+		empList.add(new Employee(1,"harish","QA",Arrays.asList(new Projects("SmartBots"),new Projects("Data Zense")),24500,"Male"));
+
+	}
 	
 	public static void threadStatus() {
 		System.out.println("Thread is running");
+	}
+	
+	public static void streamPractice() {
+		
+		//sorting based on project name
+		empList.stream()
+		       .flatMap(emp -> emp.getProjects().stream().map(proj -> proj.getProjectName()))
+		       .sorted(Collections.reverseOrder())
+		       .forEach(name -> System.out.println(name));
+		
+		//finding second highest salary
+		 Optional<Employee> secondHigestSal = empList.stream()
+		       .sorted(Comparator.comparingDouble(Employee::getSalary))
+		       .skip(1)
+		       .findFirst();
+		 
+		 
+		 //groupingBy employee based on department
+		Map<String,List<String>> namesBasedOnDept = empList.stream()
+		        .collect(Collectors.groupingBy(Employee::getDept,
+		        		                       Collectors.mapping(Employee::getName, Collectors.toList())));
+		System.out.println(namesBasedOnDept);
+		
+		//counting no emp's in each department
+		Map<String,Long> countOfEmpInEachDept = empList.stream()
+		       .collect(Collectors.groupingBy(Employee::getDept,Collectors.counting()));
+		System.out.println(countOfEmpInEachDept);
 		
 		
+		//finding the employee filter by salary in eahc department
+		HashMap<String,List<String>> empBysalary = (HashMap<String, List<String>>) empList.stream()
+		       .filter(emp -> emp.getSalary() < 25000)
+		       .collect(Collectors.groupingBy(Employee::getDept, Collectors.mapping(Employee::getName, Collectors.toList())));
+		System.out.println(empBysalary);
+		
+		Optional<String> op = Optional.ofNullable("karthick");
+		System.out.println(op.orElse(orElseCheck()));
+	}
+
+	private static String orElseCheck() {
+		// TODO Auto-generated method stub
+		System.out.println("or Else Called");
+		return "orElse called";
 	}
 
 	public static void main(String[] args) throws InterruptedException {
@@ -66,7 +115,7 @@ public class Java8Features extends InterruptExample{
 		 * for(int i:nums) { System.out.println(i); nums.add(10); }
 		 */
 		//java8NewFeatures();
-		PostJava8Date();
+		streamPractice();
 
 	}  
 	
