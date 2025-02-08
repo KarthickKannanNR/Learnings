@@ -53,9 +53,9 @@ public class ProblemSolving {
 //		nunberAppearsOnce();
 //		palindrome();
 //		romanToInte2();
-		System.out.println(longestCommonPrefix(new String[] {"flower","flow","karthick"}));
-		System.out.println(findfactorial(5));
-
+//		System.out.println(longestCommonPrefix(new String[] {"flower","flow","karthick"}));
+//		System.out.println(findfactorial(5));
+		findNthFibonacci(6);
 	}
 
 	public static int[] twoSum(int[] nums, int target) {
@@ -296,6 +296,7 @@ public class ProblemSolving {
 		if (n <= 1) {
 			return n;
 		}
+		System.out.println(findNthFibonacci(n - 1) + findNthFibonacci(n - 2));
 		return findNthFibonacci(n - 1) + findNthFibonacci(n - 2);
 	}
 

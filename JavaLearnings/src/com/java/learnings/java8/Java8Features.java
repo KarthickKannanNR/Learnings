@@ -89,6 +89,7 @@ public class Java8Features extends InterruptExample{
 		
 		Optional<String> op = Optional.ofNullable("karthick");
 		System.out.println(op.orElse(orElseCheck()));
+		
 	}
 
 	private static String orElseCheck() {
@@ -115,7 +116,7 @@ public class Java8Features extends InterruptExample{
 		 * for(int i:nums) { System.out.println(i); nums.add(10); }
 		 */
 		//java8NewFeatures();
-		streamPractice();
+		streamApiEx();
 
 	}  
 	
@@ -284,9 +285,20 @@ public class Java8Features extends InterruptExample{
 	      split.tryAdvance(System.out::println); // Output split elements
 	       System.out.println("tryAdvance check");
 	       
-	       
+			System.out.println("finding prime numbers in the list of numebrs");
+			numList.forEach((n) -> System.out.print(n+" "));
+			System.out.println();
+			numList.stream().filter(Java8Features::checkPrime).forEach((n) -> System.out.print(n+" "));
 	       
 
+	}
+	
+	static boolean checkPrime(int num) {
+		if(num <=1) return false;
+		for(int i=2;i <= Math.sqrt(num);i++) {
+			if(num%i ==0) return false;
+		}
+		return true;
 	}
 	
     static void addList(List<Integer> list){  

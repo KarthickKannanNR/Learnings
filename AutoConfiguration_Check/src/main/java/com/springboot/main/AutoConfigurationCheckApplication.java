@@ -1,0 +1,39 @@
+package com.springboot.main;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.TreeMap;
+import java.util.concurrent.ConcurrentHashMap;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+
+import com.springboot.config.ConfigClass;
+
+@SpringBootApplication
+@ComponentScan(basePackages = {"com.springboot.*"})
+public class AutoConfigurationCheckApplication implements CommandLineRunner{
+
+	@Autowired
+	ApplicationContext appContext;
+	@Autowired
+	ConfigClass configClass;
+	
+	public static void main(String[] args) {
+		SpringApplication.run(AutoConfigurationCheckApplication.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		configClass.printConfig();
+	}
+	
+
+	
+	
+
+}

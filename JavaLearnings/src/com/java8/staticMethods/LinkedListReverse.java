@@ -10,7 +10,18 @@ import java.util.ListIterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class LinkedListReverse {
+	
+	public LinkedListReverse() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	LinkedListReverse(int num){
+		System.out.println("int constructor called");
+	}
 
+	LinkedListReverse(String str){
+		System.out.println("String constructor called");
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 	

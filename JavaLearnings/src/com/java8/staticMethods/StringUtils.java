@@ -2,6 +2,8 @@ package com.java8.staticMethods;
 
 @FunctionalInterface
 public interface StringUtils {
+	
+	
 	public static String upperCase(String input) {
 		return input.toUpperCase();
 	}
