@@ -2,15 +2,21 @@ package com.java.interview;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class InterviewCodingQuestoin {
 
 	public static void main(String[] args) {
-		findAnagram();
+		sortMap();
 	}
 	
 	public static void mergeSortedArr() {
@@ -104,16 +110,88 @@ public class InterviewCodingQuestoin {
 	}
 	
 	public static void findAnagram() {
-		String str1 = "nana       ";
-		String str2 = "nana";
+		String str1 = "astronomers       ";
+		String str2 = "moon starers";
 		
-		str1 = Stream.of(str1.replaceAll("\\s", "")).map(String::toUpperCase)
-				                        .collect(Collectors.joining());
+		char[] arr1 = str1.toLowerCase().replaceAll("\\s", "").toCharArray(); 
+		char[] arr2 = str2.toLowerCase().replaceAll("\\s", "").toCharArray(); 
+
+		Arrays.sort(arr1);
+		Arrays.sort(arr2);
+		System.out.println(Arrays.equals(arr1, arr2));
+	}
+	
+	public static void twoDimArrPrblm1() {
+		int [][]arr = new int[3][3];
+		arr[0][0] =1;arr[0][1] =0;arr[0][2] =1;
+		arr[1][0] =1;arr[1][1] =1;arr[1][2] =1;
+		arr[2][0] =1;arr[2][1] =1;arr[2][2] =0;
+		boolean found = false;
 		
-		str2 = Stream.of(str2.replaceAll("\\s", "")).map(String::toUpperCase)
-				                        .collect(Collectors.joining());
+		for(int i=0;i<arr.length;i++) {
+			found =false;
+			for(int j=0;j<arr[i].length;j++) {
+				if(arr[i][j]==0) {
+					found = true;
+					for(int k=0;k<arr[i].length;k++) {
+						arr[i][k]=0;
+					}
+				}
+				if(found) break;
+			}
+			System.out.println();
+		}
 		
-		System.out.println("Anagram "+str1.equals(str2));
+		for(int i=0;i<arr.length;i++) {
+			for(int j=0;j<arr[i].length;j++) {
+				System.out.print(arr[i][j]);
+			}
+			System.out.println();
+		}
+	}
+	
+	
+	public static void findOccurenceAndSort() {
+		List<Integer> nums = Arrays.asList(8,7,2,5,1,7,9,2,5,1,5,2,2,8,8);
+		Map<Integer,Long> occurence = nums.stream().collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+		Map<Integer,List<Integer>> groupedByOccur = occurence.entrySet()
+				                                    .stream().collect(Collectors.groupingBy(
+				                                    		  entry -> entry.getValue().intValue(),
+				                                    		   Collectors.mapping(Map.Entry::getKey, 
+				                                    			Collectors.collectingAndThen(Collectors.toList(), list ->{
+							                                    Collections.sort(list.reversed());
+							                                    return list;
+							                                   }))
+				                                    		));
+		
+		System.out.println(occurence);
+		System.out.println(groupedByOccur);
+		
+		  for(Map.Entry<Integer, List<Integer>> entry:groupedByOccur.entrySet()) {
+			  System.out.print(entry.getKey()+" ");
+			  for(int i:entry.getValue()) {
+				  for(int j=0;j<entry.getKey();j++) {
+					  System.out.print(i);
+				  }
+				  System.out.print(" ");
+			  }
+			  System.out.println();
+		  }
+		 
+	}
+	
+	public static void sortMap() {
+		Map<Integer,Integer> map = new HashMap<>();
+		map.put(1, 200);
+		map.put(4, 100);
+		map.put(2, 300);
+		map.put(2, 50);
+		
+		Map<Integer,Integer> sortedMap = map.entrySet()
+		   .stream()
+		   .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,(val1,val2)->val1,TreeMap::new));
+		System.out.println(sortedMap);
+
 	}
 
 }
