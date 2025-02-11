@@ -16,7 +16,7 @@ import com.springbootsecurity.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-@RestController()
+@RestController
 @RequestMapping("/api/user/")
 public class UserController {
 

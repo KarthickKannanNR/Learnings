@@ -45,7 +45,6 @@ public class JWTService {
 		    .and()
 		    .signWith(getKey())
 		    .compact();
-		 
 	}
 
 	private SecretKey getKey() {
@@ -53,7 +52,6 @@ public class JWTService {
 	}
 
 	public String extractUserName(String token) {
-		
 		return extractClaim(token,Claims::getSubject);
 	}
 
@@ -83,7 +81,4 @@ public class JWTService {
 		return extractClaim(token, Claims::getExpiration);
 	}
 	
-
-
-
 }

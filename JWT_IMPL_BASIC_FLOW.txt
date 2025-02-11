@@ -1,0 +1,131 @@
+
+pom.xml
+
+* springboot-starter-security
+* jjwt-api
+* jjwt-impl
+* jjwt-jackson
+
+
+First user need to login for first time with username and password if credential is valid we need to 
+create token 
+
+For that we need AuthenticationManager authmanager. We configure a bean for AuthenticationManager on config class
+@Bean
+public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+		return config.getAuthenticationManager();
+}  
+
+after call Authentication authentication = authManager.authenticate(new                                   usernamePasswordAuthenticationToken(username,password));
+it canot directyly acces the db to check if username is exist or not for that we need two Interfaces
+1.UserDetails
+2.UserDetailsService
+
+//this class is internally called by sprinboot 
+CustomeUserDetailsService implements UserDetailsService{
+   @override
+   public UserDetails loadByUsername(username){
+    //in this we need call our own userRepo findByUsername(username) and return user as userDetails;
+	return user.map(CustomUserDetails::new).orElseThrow(()->new UsernameNotFoundException("This  username 
+	                                                                     "+userName+"is not exists"));
+   }
+}
+
+CustomUserDetails implements UserDetails{
+  //in this some method was overriden but as of now we need not user
+  
+  private userName;
+  private password;
+  
+  public CustomUserDetails(User user){
+     this.user = user;
+	 this.password = password;
+  }
+}
+
+Once user is exist in db it will return the UserDetails and we het authetication object
+
+if(auth.isauthecticated()){
+ Striung token = generateToken(username);
+}
+
+we have to write logic for generate token
+  public String generateToken(String userName) {
+		Map<String,Object> claims = new HashMap<>();
+		return createToken(claims,userName);
+	}
+	
+	@SuppressWarnings("deprecation")
+	public String createToken(Map<String,Object> claims ,String userName) {
+		return Jwts.builder()
+		    .setClaims(claims)
+		    .setSubject(userName)
+		    .setIssuedAt(new Date(System.currentTimeMillis()))
+		    .setExpiration(new Date(System.currentTimeMillis() + 60 * 1000))
+		    .signWith(getSignKey(),SignatureAlgorithm.HS256)
+		    .compact();
+	}
+	
+	//a random sequence will contain number string(alpha numeric) this will be random   long value to be a strong key
+	String secret = "5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437";
+	private Key getSignKey() {
+		byte[] keyBytes = Decoders.BASE64.decode(secret);
+		return Keys.hmacShaKeyFor(keyBytes);
+	}
+	
+	 * Once token is created send the token with response , next time user doesn't need to give username  and pwd instead user will send token in header as "Bearer "generatedToken" " 
+	 
+	 
+	 Token Validation
+	     
+	 We need to create a class and extends AbstractGatewayFilterFactory<JWTAuthFilter.Config> 	
+
+     public class JWTAuthFilter extends AbstractGatewayFilterFactory<JWTAuthFilter.Config>{
+	  class Config{
+	  }
+	    @override
+	  	public GatewayFilter apply(Config config) {
+		   //validation
+		   (exchange,chain) ->{
+		          if(!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
+					throw new RuntimeException("Missing Authorization Headers");
+				}
+				                //list
+				String header = exchange.getRequest().getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
+				if(header != null && header.contains("Bearer ")) {
+					header = header.substring(6);
+				}
+				
+				   jwtUtil.validateToken(header);
+				
+		    }
+		}
+
+	 }
+	 
+	 
+	 Inside jwtUtil we need to extract claims, and check expiration time
+	 
+	 public boolean validateToken(final String token) {
+		Claims claims = extractClaims(token);
+		
+		if(claims.getExpiration().before(new Date())) {
+			throw new RuntimeException("Token has expiored at "+ claims.getExpiration());
+		}
+		
+	}
+	
+	private Claims extractClaims(String token) {
+		return Jwts.parserBuilder()
+				   .setSigningKey(signKey())
+				   .build()
+				   .parseClaimsJws(token)
+				   .getBody();
+	}
+	
+	private Key signKey() {
+		byte[] keyBytes = Decoders.BASE64.decode(secret);
+		return Keys.hmacShaKeyFor(keyBytes);
+	}
+
+	
