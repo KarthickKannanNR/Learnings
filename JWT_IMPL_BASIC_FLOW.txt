@@ -9,7 +9,10 @@ pom.xml
 
 First user need to login for first time with username and password if credential is valid we need to 
 create token 
-
+  
+    JWT Token consists of 3 parts Header,Payload,Signature
+	
+	
 For that we need AuthenticationManager authmanager. We configure a bean for AuthenticationManager on config class
 @Bean
 public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
@@ -76,8 +79,12 @@ we have to write logic for generate token
 	 * Once token is created send the token with response , next time user doesn't need to give username  and pwd instead user will send token in header as "Bearer "generatedToken" " 
 	 
 	 
+	 
+	 
 	 Token Validation
 	     
+		 
+		 
 	 We need to create a class and extends AbstractGatewayFilterFactory<JWTAuthFilter.Config> 	
 
      public class JWTAuthFilter extends AbstractGatewayFilterFactory<JWTAuthFilter.Config>{
@@ -86,7 +93,10 @@ we have to write logic for generate token
 	    @override
 	  	public GatewayFilter apply(Config config) {
 		   //validation
-		   (exchange,chain) ->{
+		   //Below annoynumous function is refering GateWayFilter functional interface -
+		   Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain);
+		   
+		   return (exchange,chain) ->{
 		          if(!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
 					throw new RuntimeException("Missing Authorization Headers");
 				}
@@ -128,4 +138,37 @@ we have to write logic for generate token
 		return Keys.hmacShaKeyFor(keyBytes);
 	}
 
+	Abobe config class in JWTAuthFilter is used to enable and disabl;e the security without changing anything in java code
 	
+	spring:
+  cloud:
+    gateway:
+      routes:
+        - id: my-service
+          uri: http://localhost:8080
+          filters:
+            - name: JWTAuthFilter
+              args:
+                enabled: true 
+				
+   This property is automaticlay mapped to config class variable				
+	class Config{
+	   boolean enabled;
+	   
+	   getter();
+	   setter();
+	}
+	
+	
+	
+	
+	Refresh Token
+            
+	  		A refresh token is used to obtain a new access token when the current one expires without requiring the user to log in again.
+	
+	
+	Sample JWT Token
+	
+	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+	.eyJzdWIiOiJ1c2VyMTIzIiwicm9sZSI6ImFkbWluIiwiaW50ZXJuYWxJZCI6Inh5ejk4NzYifQ
+        .dQw4w9WgXcQ

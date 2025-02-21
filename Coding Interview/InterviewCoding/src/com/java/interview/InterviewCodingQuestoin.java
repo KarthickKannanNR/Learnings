@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 public class InterviewCodingQuestoin {
 
 	public static void main(String[] args) {
-		sortMap();
+		reverseChar();
 	}
 	
 	public static void mergeSortedArr() {
@@ -193,5 +193,42 @@ public class InterviewCodingQuestoin {
 		System.out.println(sortedMap);
 
 	}
+	
+	//find longest non repeating substr
+	public static String findLongedtSubStr() {
+		String input = "Aabbdienbddhjabyekjsabd";
+		List<String> subStrs = new ArrayList<>();
+		int p = 0;
+		String s = "";
+		for(int i=0;i<input.length();i++) {
+			while(i<input.length() && !s.contains(Character.toString(input.charAt(i)))) {
+				s = s.concat(Character.toString(input.charAt(i)));
+				i++;
+				p++;
+			}
+			subStrs.add(s);
+			if(p+1 >=input.length()) break;
+			p--;
+			s= "";
+		}
+		System.out.println(subStrs);
+		return subStrs.stream().max((val1,val2) -> val1.length() - val2.length()).get();
+	}
+	
+	public static void reverseChar() {
+		String input = "123456789";
+		String output = "";
+		int n =1;
+		
+		for(int i=0;i<input.length();i++) {
+			while(n==3) {
+				output += input.charAt(i);
+				n++;
+			}
+			n=1;
+		}
+		System.out.println(output);
+	}
+	
 
 }

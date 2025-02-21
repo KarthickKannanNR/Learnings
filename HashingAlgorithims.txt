@@ -1,0 +1,41 @@
+SHA-256
+   
+
+1️⃣ What is HMAC?
+HMAC is a keyed-hash function, meaning it combines:
+
+A secret key (shared between sender and receiver).
+A hash function (SHA-256 in this case).
+The message (e.g., JWT Header + Payload).
+It is used for data integrity and authentication.
+
+
+
+ How HMAC SHA-256 Works Internally
+HMAC applies SHA-256 twice in a secure way using two specially derived keys.
+
+🔹 Steps of HMAC SHA-256
+Prepare the Secret Key
+
+If the key is longer than the SHA-256 block size (64 bytes), it is hashed first.
+If the key is shorter, it is padded with zeros to make it 64 bytes.
+Create Two Keys
+
+Inner Key (ipad): XOR the secret key with 0x36.
+Outer Key (opad): XOR the secret key with 0x5C.
+First Hash (Inner Hash)
+
+Concatenate ipad with the message.
+Apply SHA-256 to get the inner hash.
+ 
+InnerHash = SHA-256( ipad + message )
+
+
+
+Second Hash (Outer Hash)
+
+Concatenate opad with the inner hash.
+Apply SHA-256 again to get the final HMAC.
+
+HMAC = SHA-256( opad + InnerHash )
+

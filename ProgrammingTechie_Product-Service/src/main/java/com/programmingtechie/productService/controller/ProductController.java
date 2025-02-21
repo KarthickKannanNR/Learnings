@@ -32,7 +32,6 @@ public class ProductController {
 	@GetMapping("/getAllProducts")
 	public List<ProductResponse> getAllProducts(){
 		return productService.getAllProducts();
-		
 	}
 	
 }
