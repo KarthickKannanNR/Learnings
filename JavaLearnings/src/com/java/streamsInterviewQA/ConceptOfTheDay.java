@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -112,6 +113,9 @@ public class ConceptOfTheDay {
         List<String> firstLetterConvertedUppercase = nameList.stream().map(s -> s.substring(0,1).toUpperCase()
         		                                   .concat(s.substring(1))).toList();
         
+        
+        Stream<Object> mapped = nameList.stream().map(s -> s.substring(0,1));
+        System.out.println("Mapped "+mapped+" Mapped");
         System.out.println("converting all first letter to uppercase"+firstLetterConvertedUppercase);
         
         //find second largest num
@@ -119,9 +123,10 @@ public class ConceptOfTheDay {
         System.out.println("second largest num :"+secondLargestNum);
         
         //first N min numbers from list
-        List<Integer> firstNMinNums = numList.stream().sorted().limit(3).toList();
+        List<Integer> firstNMinNums = numList.stream().map(num -> Optional.ofNullable(num).orElse(0))
+        		                                      .sorted().limit(3).toList();
         System.out.println("first 3 min numbers from list :"+firstNMinNums);
-        
+        numList.stream().map(num -> num!=null).sorted().limit(3).toList();
         //first N max numbers from list
         List<Integer> firstNMaxNumbers = numList.stream().sorted(Comparator.reverseOrder()).limit(3).toList();
         System.out.println("First 3 max numbers : "+firstNMaxNumbers);
@@ -209,8 +214,15 @@ public class ConceptOfTheDay {
       numList.stream().map(num -> num*2)
                       .filter(vals -> numList.indexOf(vals)!=-1)
                       .forEach(index -> System.out.println(index));
+      List<String> names = Arrays.asList("John", "Alice", "Bob", "Jane");
+      int totalStrLength = names.stream()
+    		                    .map(String::length)
+    		                    .reduce(0,(name1,name2)->name1+name2);
+
       
-
-
 	}
+	
+	
+	
+	
 }

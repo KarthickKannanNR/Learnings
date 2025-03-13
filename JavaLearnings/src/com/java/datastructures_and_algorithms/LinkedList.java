@@ -80,7 +80,6 @@ public class LinkedList<T> implements Iterable<T>{
 	
 	public void add(int index,T data) {
 		Node<T> newNode = new Node<T>(data);
-		
 		if(index < 0 || index >= size) {
 			throw new IndexOutOfBoundsException("Index: "+index + " size: " +size);
 		}

@@ -34,6 +34,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.RunnableFuture;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -116,8 +117,10 @@ public class Java8Features extends InterruptExample{
 		 * for(int i:nums) { System.out.println(i); nums.add(10); }
 		 */
 		//java8NewFeatures();
-		streamApiEx();
-
+		//streamApiEx();
+		//immutableList();
+		//finbonacciUsingStreams();
+		finbonacciUsingWithoutStreams();
 	}  
 	
 	static void streamApiEx() {
@@ -436,6 +439,41 @@ public class Java8Features extends InterruptExample{
 	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 	        String formattedDate = today.format(formatter);
 	        System.out.println("Formatted Date: " + formattedDate);
+	}
+	
+	public static void filterEmpBySalary() {
+		Predicate<Employee> salGreaterThanPredicate = (emp) -> emp.getSalary() > 20000;
+		Predicate<Employee> salLeserThanPredicate = (emp) -> emp.getSalary() < 25000;
+		Predicate<Employee> combined = salGreaterThanPredicate.and(salLeserThanPredicate);
+		List<Employee> filteredList = empList.stream().filter(combined)
+		                .collect(Collectors.toList());
+		System.out.println(filteredList);
+	}
+	
+	public static void immutableList() {
+		List<Integer> nums = new ArrayList<>();
+		nums.add(1);
+		nums = Collections.unmodifiableList(nums);
+		List<Integer> nums2 = nums;
+		nums2.add(6);
+ 	}
+	
+	public static void finbonacciUsingStreams() {
+		int n = 5;
+		Stream.iterate(new int[] {0,1},arr -> new int[] {arr[1],arr[0]+arr[1]})
+		      .map(arr -> arr[0]).limit(n)
+		      .forEach(num->System.out.println(num));
+	}
+	
+	public static void finbonacciUsingWithoutStreams() {
+		int first = 0, second = 1,next=0;
+		int n = 10;
+		for(int i=0;i<n-2;i++) {
+			System.out.print(first+" ");
+		    next = first+second;
+			first = second;
+			second = next;
+		}
 	}
 
 

@@ -8,15 +8,17 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class InterviewCodingQuestoin {
 
 	public static void main(String[] args) {
-		reverseChar();
+		maptest();
 	}
 	
 	public static void mergeSortedArr() {
@@ -196,7 +198,7 @@ public class InterviewCodingQuestoin {
 	
 	//find longest non repeating substr
 	public static String findLongedtSubStr() {
-		String input = "Aabbdienbddhjabyekjsabd";
+		String input = "abcabcbb";
 		List<String> subStrs = new ArrayList<>();
 		int p = 0;
 		String s = "";
@@ -217,18 +219,53 @@ public class InterviewCodingQuestoin {
 	
 	public static void reverseChar() {
 		String input = "123456789";
+		String c = "";
 		String output = "";
 		int n =1;
 		
 		for(int i=0;i<input.length();i++) {
-			while(n==3) {
-				output += input.charAt(i);
-				n++;
+			c += input.charAt(i);
+			if(n==3) {
+				output += new StringBuilder(c).reverse().toString();
+				n=0;
+				c= "";
 			}
-			n=1;
+			n++;
 		}
 		System.out.println(output);
 	}
 	
+	//increment a num represent by an arr
+	public static void incrementNum() {
+		int arr[] = new int[]{1,2,9};
+		int num =0;
+		String str = "";
+		for(int i=0;i<arr.length;i++) {
+			str+=arr[i];
+		}
+		num+=Integer.parseInt(str)+1;
+		int arr2[] = new int[String.valueOf(num).length()];
+		for(int i=0;i<arr2.length;i++) {
+			arr2[i]= Integer.parseInt(Character.toString(String.valueOf(num).charAt(i)));
+		}
+		for(int n:arr2) {
+			System.out.print(n);
+		}
+		IntStream.concat(Arrays.stream(arr),Arrays.stream(arr2))
+		         .filter(n -> n%2==0);
+	}
+	
+	public static void maptest() {
+		Map<Integer,Integer> nums =  new HashMap<>();
+		nums.put(1, 1);
+		nums.put(2, 2);
+		nums.put(3, 3);
+		nums.put(null, 4);
+		nums.put(5, 5);
+		nums.put(6, 6);
+		for(int i=0;i<100;i++) {
+			System.out.println(nums);
+		}
+	}
 
 }

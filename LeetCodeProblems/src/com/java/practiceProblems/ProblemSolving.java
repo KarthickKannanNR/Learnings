@@ -55,9 +55,33 @@ public class ProblemSolving {
 //		romanToInte2();
 //		System.out.println(longestCommonPrefix(new String[] {"flower","flow","karthick"}));
 //		System.out.println(findfactorial(5));
-		findNthFibonacci(6);
-	}
+//		reverseNum();
+//		armstrongNum();
+//		findNumOfDigits();
+        String str = "abc";
+        HashSet<String> set = new HashSet<>();
+        generatePermutations(str.toCharArray(),0,set);
+        System.out.println(set);
 
+	}
+	static void generatePermutations(char[] chars, int index,HashSet<String> set) {
+        if (index == chars.length - 1) { 
+        	set.add(new String(chars));
+            return;
+        }
+
+        for (int i = index; i < chars.length; i++) {
+            swap(chars, i, index);  
+            generatePermutations(chars, index + 1,set);  
+            swap(chars, i, index);  
+        }
+    }
+	
+	static void swap(char[] chars, int i, int j) {
+        char temp = chars[i];
+        chars[i] = chars[j];
+        chars[j] = temp;
+    }
 	public static int[] twoSum(int[] nums, int target) {
 
 //    	int result[] = new int[2];
@@ -188,12 +212,12 @@ public class ProblemSolving {
 
 	public static void armstrongNum() {
 		int sum = 0;
-		int n = 371;
+		int n = 1634;
 		int rem = 0;
 		int dup = n;
 		while (n > 0) {
 			rem = (n % 10);
-			sum = sum + (rem * rem * rem);
+			sum += Math.pow(rem, String.valueOf(dup).length());
 			n = n / 10;
 		}
 		System.out.println(sum);
@@ -291,13 +315,17 @@ public class ProblemSolving {
 		return palindromeRecursion(i + 1);
 	}
 
-	public static int findNthFibonacci(int n) {
-
+	public static int findNthFibonacci(int n,String method) {
+		System.out.println(method+" "+n);
 		if (n <= 1) {
 			return n;
 		}
-		System.out.println(findNthFibonacci(n - 1) + findNthFibonacci(n - 2));
-		return findNthFibonacci(n - 1) + findNthFibonacci(n - 2);
+		return findNthFibonacci(n - 1,"method_1") + findNthFibonacci(n - 2,"method_2");
+	}
+	
+	public static int findFibonacci(int i) {
+		if(i <= 1) return i;
+		return findFibonacci(i-1) + findFibonacci(i-2);
 	}
 
 	public static void findNOccurrence() {
@@ -768,11 +796,23 @@ public class ProblemSolving {
 	  }
 	
 	public static int findfactorial(int n) {
-		if(n==0) {
-			return 1;
-		}else {
-			return n* findfactorial(n-1);
+		if(n==0) return 1;
+	    return n* findfactorial(n-1);
+	}
+	
+	public static void findNumOfDigits() {
+		int num =-65,count=0;
+		if(num<0) {
+			num = num*-1;
+		}else if(num==0) {
+			num=1;
 		}
+		
+		while(num>0) {
+			num = num/10;
+			count+=1;
+		}
+		System.out.println(count);
 	}
 
 }

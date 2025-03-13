@@ -1,10 +1,5 @@
 package com.springboot.main;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.TreeMap;
-import java.util.concurrent.ConcurrentHashMap;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -23,7 +18,7 @@ public class AutoConfigurationCheckApplication implements CommandLineRunner{
 	@Autowired
 	ConfigClass configClass;
 	
-	public static void main(String[] args) {
+	public static void main(String... args) {
 		SpringApplication.run(AutoConfigurationCheckApplication.class, args);
 	}
 

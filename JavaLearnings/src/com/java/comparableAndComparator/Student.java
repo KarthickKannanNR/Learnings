@@ -1,6 +1,7 @@
 package com.java.comparableAndComparator;
 
 import java.util.Objects;
+import java.util.function.BiFunction;
 
 public class Student implements Comparable<Student>{
 
@@ -40,6 +41,12 @@ public class Student implements Comparable<Student>{
 		this.age = age;
 		this.name = name;
 	}
+	
+	public Student(int age, String name) {
+		super();
+		this.age = age;
+		this.name = name;
+	}
 	public void setAge(int age) {
 		this.age = age;
 	}
@@ -60,5 +67,9 @@ public class Student implements Comparable<Student>{
 		}else if(this.age > o.age) {
 			return 1;
 		}else return 0;
+	}
+	
+	public static void add() {
+		BiFunction<Integer, String, Student> createObj = (age,name) ->new Student(age, name);
 	}
 }

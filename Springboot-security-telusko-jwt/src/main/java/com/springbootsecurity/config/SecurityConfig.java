@@ -43,11 +43,7 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		return http.csrf(customizer -> customizer.disable())
-				.authorizeHttpRequests(request -> 
-				 request
-				 .requestMatchers("login","adduser")
-				 .permitAll()
-				 .anyRequest().authenticated())
+				.authorizeHttpRequests(request -> request.requestMatchers("login","adduser").permitAll().anyRequest().authenticated())
 				// .formLogin(Customizer.withDefaults())
 				.httpBasic(Customizer.withDefaults())
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

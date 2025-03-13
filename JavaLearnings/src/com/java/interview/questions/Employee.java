@@ -16,10 +16,7 @@ public class Employee {
 	}
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + ", status=" + status + ", getId()="
-				+ getId() + ", getName()=" + getName() + ", getSalary()=" + getSalary() + ", getStatus()=" + getStatus()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-				+ "]";
+		return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + ", status=" + status + "]";
 	}
 	public int getId() {
 		return id;

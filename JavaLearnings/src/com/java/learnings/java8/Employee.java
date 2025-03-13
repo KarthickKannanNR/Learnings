@@ -22,6 +22,11 @@ public class Employee {
 	public void setDept(String dept) {
 		this.dept = dept;
 	}
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + ", dept=" + dept + ", projects=" + projects + ", salary="
+				+ salary + ", gender=" + gender + "]";
+	}
 	public List<Projects> getProjects() {
 		return projects;
 	}

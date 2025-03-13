@@ -6,6 +6,13 @@ import java.util.Stack;
 
 public class DSA_PRACTICE {
 	
+	public static void binaryRep() {
+		int num =80;
+		String binaryString  = Integer.toBinaryString(num);
+		System.out.println(binaryString);
+	}
+	
+	
 	public static void stack() {
 		Stack<String> names = new Stack<>();
 		names.push("karthick");
@@ -40,7 +47,7 @@ public class DSA_PRACTICE {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		queue();	    
+		binaryRep();	    
 	}
 
 }
