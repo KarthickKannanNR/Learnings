@@ -1,0 +1,19 @@
+
+
+
+Function<Integer,Integer> result = (num) -> {
+    return num *2;
+};
+
+System.out.println(result.apply(5)); 
+
+@ExceptionHandling(BusinessException.class)
+
+[1,2,3,4,5] n o(n);
+
+
+Emp emp_id,name,address
+
+update emp set address = 'Abc colony' where emp_id = 123;
+
+select emp_id,name,address where name like 'a%';

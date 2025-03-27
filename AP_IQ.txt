@@ -1,0 +1,58 @@
+
+
+List<Employees> empList ;
+
+List<String> TopPaidEmployees =   empList.stream().sorted((emp1,emp2) -> emp2.getSalry().compareTo(emp1.getSalary()))
+                                                  .limit(3)
+                                                  .map(emp -> Employees::getEmpName)
+				                                  .collect(Collectors.toList());
+				  
+				  
+				  
+
+
+int []arr = new int[]{3, 6, 8, -8, 10, 8 };
+String []pairArr = new String[arr.length]; {"6,10" , "8,8" , "6,10","8,8"}
+int matchNum = 16;
+int count =0;
+
+for(int i=0;i<arr.length;i++){
+	for(int j=i;j<arr.length;j++){
+		if(arr[i]+arr[j]==matchNum){
+			pairArr[count] = arr[i]+","+arr[j];
+			count++;
+		}
+	}
+}
+
+
+how many Object will create?
+    Strng s1 = new String("SRK"); 1
+    Strng s2 = new String("SRK"); 1
+	String s3 = "SRK";           1
+	String s4 = "SRK";
+ 
+ 
+ m1(String s);
+ m1(StringBuffer sb);
+ 
+ @RestController
+ @requestMapping("/employee/")
+ Class EmployeeController{
+ 
+  @putMapping("updateEmpById")
+  public Employee updateEmployee(@RequestBody Employee emp){
+      
+  }
+ 
+ }
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 1.Why String is Immutable?
+ 1.Internal working of hashMap
