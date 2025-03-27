@@ -51,7 +51,7 @@ public class StreamsPractice {
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		//practiceProblemsWithStudents();
 		//convertStrToInt();
-		convertStrToIntApproach2();
+		repeatedElmInStr();
 	}
 	
 	public static void tryWithResourceForStream() throws IOException {
@@ -409,5 +409,18 @@ public class StreamsPractice {
 		                  .map(Optional::get)
 		                  .toList();
 		numList.forEach(n -> System.out.println(n+" "));
+	}
+	
+	public static void repeatedElmInStr() {
+		String s =  "programming";
+		List<String> duplicated = Stream.of(s.split(""))
+		      .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
+		      .entrySet()
+		      .stream()
+		      .filter(map -> map.getValue()>1)
+		      .map(Map.Entry::getKey)
+		      .collect(Collectors.toList());
+		System.out.println(duplicated);
+		
 	}
 }

@@ -54,4 +54,7 @@ public class EnternelizationEx {
 
 	}
 
+	public static void serialize() {
+		
+	}
 }
