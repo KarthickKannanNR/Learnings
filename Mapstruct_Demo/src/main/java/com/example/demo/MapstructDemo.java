@@ -3,11 +3,12 @@ package com.example.demo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
-public class MapstructDemoApplication {
+
+@SpringBootApplication(scanBasePackages = {"com.example.demo.*"})
+public class MapstructDemo {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MapstructDemoApplication.class, args);
+		SpringApplication.run(MapstructDemo.class, args);
 	}
 
 }
