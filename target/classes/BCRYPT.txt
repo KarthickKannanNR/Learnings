@@ -1,0 +1,86 @@
+BCrypt is a password hashing algorithm designed to securely store passwords. It is widely used because of its slow hashing speed, which makes it resistant to brute-force attacks.
+
+
+* Why Use BCrypt Instead of SHA-256 or MD5?
+     Slow hashing makes it harder for attackers to crack passwords.
+     Uses salting to prevent rainbow table attacks.
+     Uses work factor (cost factor), which allows increasing computation as hardware improves.
+     Resistant to brute-force and dictionary attacks.
+
+
+* How BCrypt Works 
+ Step 1: 
+   Generate a Salt   = $2a$12$X9v5eDPn6d2Dtd6YH5zOeO
+   The salt is prepended to the password before hashing:   hash(password + salt). This ensures that identical passwords do not produce the same hash.
+
+  *How is a Salt Generated in BCrypt?
+   BCrypt automatically generates a secure random salt when calling gensalt().
+   The salt is 16 bytes long (128 bits).
+   It is encoded and stored inside the final hash (so you don’t need to store it separately!).
+
+ Step 2: Use the Blowfish Cipher
+
+   BCrypt is based on the Blowfish encryption algorithm and uses an expensive key setup phase to slow down brute-force attempts.
+
+   It runs the password through the Blowfish-based key expansion process.
+   The process is repeated 2^cost times (configurable work factor).
+   This makes BCrypt slower but more secure.
+
+ Step 3: Apply Cost Factor (Work Factor)
+    The cost factor (log rounds) controls how slow the hashing function is.
+
+    A cost factor of 10 means 2^10 = 1024 iterations.
+    A cost factor of 12 means 2^12 = 4096 iterations.
+    Higher cost = More secure but slower!
+
+  String hashedPassword = BCrypt.hashpw("password123", BCrypt.gensalt(12));
+
+
+ Step 4: Generate Final Hash
+   $2a$12$X9v5eDPn6d2Dtd6YH5zOeO8gJfG6TLB2mZZXxUsJaz7g2JuhwzSS
+
+   Part	Description
+    $2a$	                      Algorithm identifier (BCrypt)
+    $12$	                      Cost factor (work factor = 2¹² = 4096 iterations)
+    X9v5eDPn6d2Dtd6YH5zOeO	      Salt (random)
+    8gJfG6TLB2mZZXxUsJaz7g2JuhwzSS    Hashed password
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+How to Verify a Password
+
+ When a user logs in, retrieve their hashed password from the database.
+ Hash the input password using the stored salt.
+ Compare the hashed result with the stored hash.
+
+import org.mindrot.jbcrypt.BCrypt;
+
+public class BCryptExample {
+    public static void main(String[] args) {
+        String password = "mySecurePassword";
+
+        // Hash the password with a salt (cost factor = 12)
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt(12));
+
+        // Simulate user login: Check if entered password matches stored hash
+        boolean isMatch = BCrypt.checkpw(password, hashedPassword);
+
+        System.out.println("Stored Hash: " + hashedPassword);
+        System.out.println("Password Matches? " + isMatch);
+    }
+}
+
+
+Algorithm	Salted?	Adjustable Work Factor?	   Speed	   Security Level
+MD5	        ❌ No	❌ No	    ⚡          Very Fast	❌ Weak (Easily Cracked)
+SHA-256	        ❌ No	❌ No	    ⚡            Fast	        ❌ Vulnerable to brute-force
+PBKDF2	        ✅ Yes	✅ Yes	    🐌            Slow	        ✅ Strong
+BCrypt	        ✅ Yes	✅ Yes	    🐢         Very Slow	✅✅✅ Very Strong
+Argon2	        ✅ Yes	✅ Yes	    🐢         Very Slow	🔥 Strongest (Recommended)
+
+
+
+

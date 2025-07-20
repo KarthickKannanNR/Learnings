@@ -1,0 +1,56 @@
+'msSQL'  ,  'postGRESql'   ,   'oRACle'   ,  'imPALA'  ,  'jdBC',  'snoWFLAKE'  ,'Hive' ,  'fTP', 'syBASE'  ,  'mySQL'  ,   'Azure_Dedicated_SQL_pooL'   ,  'AMAZoN_REDShIFT'  ,   'oracLE_Ebs'   ,  'HanA'  ,'NETWORK_DRIVE','GOOGLE_BIGQUERY'
+
+
+
+Data Catalog
+
+1.Connection
+Supported Endpoints  = POSTGRESQL,ORACLE,ORACLE_EBS,MSSQL,MYSQL,HANA,SNOWFLAKE,SYBASE,AMAZON_REDSHIFT,JDBC,FTP,AMAZON S3,DATABRICKS, GOOGLE_BIGQUERY, AZURE_DEDICATED_SQL_POOL, AMAZON_S3,AMAZON_AURORA_POSTGRESQL.SFDC
+2.Library -  DP_LIBRARY_TABLE_INFO
+    *Full Refresh
+    *New Object Detection
+    *Custom Entities - first 1000 tables fetch
+     sample query for oracle
+     SELECT  TABLE_NAME  FROM  INFORMATION_SCHEMA.TABLES  WHERE  TABLE_TYPE='BASE TABLE'  AND UPPER(TABLE_SCHEMA) = UPPER('<SchemaName>')  AND UPPER(TABLE_NAME) LIKE UPPER('%<EntityName>%')  LIMIT 1000;
+
+    While Custom Entity Sync
+   prepareForeignKeyConstraintsFetchQuery()
+       1. ownerNamer  = SELECT TABLEOWNER AS "ownerName" FROM PG_TABLES  WHERE UPPER(TABLENAME) = UPPER('dp_catalogs');
+       2. tableCount  = SELECT  COUNT(TABLE_NAME)  FROM  INFORMATION_SCHEMA.TABLES  WHERE  TABLE_TYPE='BASE TABLE' AND  UPPER(TABLE_SCHEMA) =  UPPER('csp_dev_pg') ;
+       3. tableSize 
+                      with TABLE_SIZE_QUERY as (select PG_TOTAL_RELATION_SIZE('dp_catalogs') as TBL_SIZE)
+                      select
+	                   case
+		            when TBL_SIZE >= 1073741824 then ROUND(TBL_SIZE /(1024.0 * 1024 * 1024),4) || ' GB'
+		            when TBL_SIZE >= 1048576 then ROUND(TBL_SIZE /(1024.0 * 1024) ,4) || ' MB'
+		            when TBL_SIZE >= 1024 then ROUND(TBL_SIZE / 1024.0,4) || ' KB'
+		             else TBL_SIZE || ' Bytes'
+	                   end
+                     from TABLE_SIZE_QUERY;
+
+
+
+       4. rowCount = SELECT COUNT(1) FROM dp_catalogs) AS rowCount
+       5. columnCOunt  SELECT COUNT(1) from information_schema.columns 
+       6. constraint =  WITH UNNESTED_CONKEY AS (  SELECT OID, UNNEST(CONKEY) AS CONKEY  FROM PG_CONSTRAINT ),  UNNESTED_CONFKEY AS ( SELECT OID, UNNEST(CONFKEY) AS CONFKEY  FROM PG_CONSTRAINT ) select  TBL.RELNAME as "tableName",  COL.ATTNAME AS "columnName",  C.CONNAME AS "constraintName",  PG_GET_CONSTRAINTDEF(C.OID) AS "constraintDefinition",  CASE C.CONTYPE  WHEN 'c' THEN 'Checked'  WHEN 'p' THEN 'Primary Key'  WHEN 'u' THEN 'Unique Key'  WHEN 'f' THEN 'Foreign Key'  ELSE '' END AS "constraintType",  REFERENCED_TBL.RELNAME AS "referenceTableName",  REFERENCED_FIELD.ATTNAME    AS "referenceColumnName"  FROM  PG_CONSTRAINT C  INNER JOIN UNNESTED_CONKEY CON ON C.OID = CON.OID  INNER JOIN PG_CLASS TBL ON TBL.OID = C.CONRELID  INNER JOIN PG_ATTRIBUTE COL ON (COL.ATTRELID = TBL.OID AND COL.ATTNUM = CON.CONKEY)  LEFT JOIN PG_CLASS REFERENCED_TBL ON C.CONFRELID = REFERENCED_TBL.OID  LEFT JOIN UNNESTED_CONFKEY CONF ON C.OID = CONF.OID  LEFT JOIN PG_ATTRIBUTE REFERENCED_FIELD ON ( REFERENCED_FIELD.ATTRELID = C.CONFRELID  AND REFERENCED_FIELD.ATTNUM = CONF.CONFKEY )  INNER JOIN PG_NAMESPACE NSP ON NSP.OID = C.CONNAMESPACE  where  C.CONTYPE IN ('c', 'p', 'u', 'f') AND  TBL.RELNAME = 'dp_profile_libraries'  AND NSP.NSPNAME = 'cs_dev_pg' ORDER BY  TBL.RELNAME, C.CONTYPE ;    
+
+    DP_DATA_PROFILER_SET_TABLES - to store all tableNames while sync
+
+
+
+
+     Catalog Execution
+    
+    1.Table Profiling
+          preparing data for table and column profiling
+	  getDataProfileColumnDetails()
+	  After collection all info about table like columnName, datatypes etc. execution status saved in "DP_PROFILE_TABLE_EXECUTIONS"
+		
+
+    2.Lineage
+        Tag Lineage 
+	 *Check for dictionary entry if found or not update the status in DP_CAT_LINEAGE_PROFILE_EXEC
+
+
+
+

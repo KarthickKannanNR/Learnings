@@ -16,7 +16,7 @@ import com.security.model.UserInfo;
 import com.security.repository.UserInfoRepository;
 
 @Component
-@Scope(value = scope)
+@Scope(value = "singleton")
 public class userInfoUserDetailService implements UserDetailsService {
 	
 	@Autowired

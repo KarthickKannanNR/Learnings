@@ -1,0 +1,24 @@
+For vulnerability issue (upgraded Jar) changed jar for update new verision and improve performance
+
+
+CR_381_2024
+TICKET_954_2024
+Need jar upgradation for vulnerability assessment in catalog
+Mar 11 2024 - Mar 14 2024
+R24.Q2.041
+
+
+Catalog Execution flow
+Statistics - min,max,length,dataType
+
+
+
+
+
+CR_987_2024 
+TICKET_3222_2024
+Need to show the matching percentage in the lineage approval form
+Jul 31 2024 -  Aug 6 2024
+R24.Q3.082
+
+Added Match_Percentage Number column in Data_catalog_Fileds
