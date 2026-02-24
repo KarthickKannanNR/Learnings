@@ -4,19 +4,26 @@ import java.util.Arrays;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
+public class ArraysProblems {
     public static void main(String[] args) {
         searchMaxIn2DArray();
     }
 
-    public static void searchMaxIn2DArray(){
-        int[][] arr = {{2,67,15,3},{78,25,61,37},{16,18},{56,81,25,67,17}};
-        System.out.println(searchMaxIn2DArray(arr));
-    }
+        /**
+        this method will search maximum element in 2d array
+        **/
+        public static void searchMaxIn2DArray(){
+            int[][] arr = {{2,67,15,3},{78,25,61,37},{16,18},{56,81,25,67,17}};
+            System.out.println(searchMaxIn2DArray(arr));
+        }
 
 
     public static void searchIn2DArrayCaller(){
-        int[][] arr = {{2,67,15,3},{78,25,61,37},{16,18},{56,81,25,67,17}};
+        int[][] arr = {{2,67,15,3},
+                       {78,25,61,37},
+                       {16,18},
+                       {56,81,25,67,17}
+                      };
         int target = 17;
         System.out.println(Arrays.toString(searchIn2DArray(arr, target)));
     }
