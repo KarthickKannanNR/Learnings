@@ -58,6 +58,7 @@ public class LongestSubString {
 			index +=find.length();
 		}
 		System.out.println("occurence "+occurence);
+		List<String> names = new ArrayList<>();
 	}
 
     public static void countSubstringusingStreams() {

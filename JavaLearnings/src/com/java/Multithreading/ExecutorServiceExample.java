@@ -1,7 +1,7 @@
 package com.java.Multithreading;
 
 import java.security.Provider.Service;
-import java.util.ArrayList;
+import java.util.;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -33,7 +33,7 @@ public class ExecutorServiceExample {
 	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
 		
-		List<Callable<Integer>> callableList = new ArrayList<>();
+		List<Callable<Integer>> callableList = new <>();
 		List<Future<Integer>> futureList = new ArrayList<>();
 
 		ExecutorService ex = Executors.newFixedThreadPool(20);

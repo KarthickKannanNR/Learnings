@@ -1,4 +1,4 @@
-package com.java.datastructures_and_algorithms;
+package JavaLearnings.src.com.java.datastructures_and_algorithms;
 
 import java.util.Iterator;
 
