@@ -6,7 +6,7 @@ public class BracketsCheck {
 
     public static void main(String[] args) {
         //check given snippet is valid;
-        String snippet = "( a * )(a + b))";
+        String snippet = "(( a * )(a + b))";
         System.out.println("This snippet is valid :"+ isValidSnippet(snippet));
     }
 
@@ -19,9 +19,8 @@ public class BracketsCheck {
                 Character current;
                 if(stack.isEmpty()){
                     return false;
-                }else{
-                    current = stack.pop();
                 }
+                current = stack.pop();
                 if(current == '{' && c != '}'
                   || current == '[' && c != ']'
                   || current == '(' && c != ')'){
