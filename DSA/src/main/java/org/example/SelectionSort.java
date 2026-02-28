@@ -9,7 +9,9 @@ public class SelectionSort {
         selectionSort(arr);
         System.out.println(Arrays.toString(arr));
     }
-
+    /**
+    selection sort - O(n2)
+     **/
     public static void selectionSort(int []arr){
         if(arr.length > 1){
             for(int i =0 ;i < arr.length;i++){
